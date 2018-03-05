@@ -31,7 +31,8 @@ module.exports = {
   },
   output: {
     path: __dirname + '/dist',
-    filename: "[name].js"
+    filename: "[name].js",
+    //publicPath:'/'
   },
   plugins:[
     new webpack.DefinePlugin({
@@ -43,7 +44,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       //favicon:path.join(__dirname,'../src/favicon.ico'),
-      title: '企福保',
+      title: 'React',
       template: path.join(__dirname,'./index.html'),
       filename: 'index.html',
       inject:'body',
@@ -51,6 +52,7 @@ module.exports = {
       initialData:'',
       production: false,
       chunks: ['name'],
+      jsname:'name',
       //staticPath: homeStaticPath,
       hash:false,    //为静态资源生成hash值
       minify:{    //压缩HTML文件
@@ -58,7 +60,6 @@ module.exports = {
         collapseWhitespace:false    //删除空白符与换行符
       }
     })
-
   ],
   module: {
     rules: [
