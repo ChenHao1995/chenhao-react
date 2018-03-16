@@ -96,7 +96,8 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     hot: true,
-    host: '127.0.0.1'
+    host: '127.0.0.1',
+    historyApiFallback: true
     // historyApiFallback: {
     //   rewrites: [
     //     { from: /^\/hr/, to: '/hr.html' },
