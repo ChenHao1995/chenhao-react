@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+
 // module.exports = {
 //   entry: './src/demo.js',
 //   output: {
@@ -27,7 +29,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    demo:['./src/demo.js']
+    demo:['./src/router.js']
   },
   output: {
     path: __dirname + '/dist',
@@ -42,6 +44,11 @@ module.exports = {
       __DEVLOGGER__: true,
       //'process.env.NODE_ENV': JSON.stringify(nodeEnv)
     }),
+    new ExtractTextPlugin({
+      filename: 'style.css',
+      disable: false,
+      allChunks: true
+    }),
     new HtmlWebpackPlugin({
       //favicon:path.join(__dirname,'../src/favicon.ico'),
       title: 'React',
@@ -53,7 +60,7 @@ module.exports = {
       production: false,
       chunks: ['name'],
       jsname:'name',
-      //staticPath: homeStaticPath,
+      staticPath: ['style.css'],
       hash:false,    //为静态资源生成hash值
       minify:{    //压缩HTML文件
         removeComments:false,    //移除HTML中的注释
@@ -90,7 +97,39 @@ module.exports = {
         },
         include: path.join(__dirname, './src'),
         exclude: /node_modules/
-      }  
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        })
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        use:{
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name:'images/[hash:8].[name].[ext]'
+          }
+        }
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use:{
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name:'fonts/[hash:8].[name].[ext]'
+          }
+        }
+      }
     ]
   },
   devServer: {
