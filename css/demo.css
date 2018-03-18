@@ -12,7 +12,11 @@ input {
 	height: 0.5rem;
 	vertical-align: middle;
 	font-size: 0.5rem;
-
+	-webkit-appearance:none;
+}
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button{
+    -webkit-appearance: none;
 }
 .root{
 	
@@ -96,4 +100,18 @@ input {
 	color: #fff;
 	border: none;
 	outline: none;
+}
+.start-click {
+  width:0.25rem;
+  height: 0.5rem;
+  /*background: red;*/
+  float: left;
+}
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+.cf:after {
+  clear: both;
 }

@@ -11,6 +11,7 @@ import democss from '../css/demo.css'
 import flexible from '../js/index.min.js'
 
 import Total from './Component/totalPoints.js'
+import ScoreStart from './Component/scoreToStart.js'
 function mapStateToProps(state){
   return {
     
@@ -25,9 +26,6 @@ function mapStateToProps(state){
 class Demo extends Component {
   constructor(props){
     super(props)
-    console.log(this.props)
-    console.log(store.getState())
-    console.log(actions)
     this.click = this.click.bind(this)
     
   }
@@ -49,29 +47,10 @@ class Demo extends Component {
       <div className='demo-container'  >
 
         <div className='container1'>
-          <span>评分</span><Total/><span>分值（15分）</span>
+          <span>评分</span><Total maxvalue={15} /><span>分值（15分）</span>
         </div>
-        <div className='score-component'>
-          <div className='score-title'>
-            <span>语言</span> <input type='text' /> <span>%</span>
-          </div>
-          <div className='score-box'>
-            <div className='start-box' >
-              <div className='start'>
-
-              </div>
-              <div className='start-l'>
-
-              </div>
-              <div className='start-yb'>
-
-              </div>
-            </div>
-            <div className='choose-detail'>
-              流畅度，准确性和复杂度
-            </div>
-          </div>
-        </div>
+        <ScoreStart/>
+        
         <div className='remark-box' >
           <div className='remark'>
             评语

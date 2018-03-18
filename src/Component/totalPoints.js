@@ -33,8 +33,10 @@ class TotalPoints extends Component {
   }
 
   exchangeValue(value){
+    const { maxvalue } = this.props
+    const funValue = String(value).indexOf('.') === -1 ? value : String(value).slice(0,String(value).indexOf('.')+2)
     this.props.totalvalue({
-      totalValue:value
+      totalValue:funValue > maxvalue ? maxvalue :funValue
     })
   }
 
@@ -43,7 +45,7 @@ class TotalPoints extends Component {
   render(){
     const { totalValue } = this.props
     return(
-      <input type='text' className='input-text'  value={totalValue} onChange={(e)=>{
+      <input type='number' min='0' className='input-text'  value={totalValue} onChange={(e)=>{
         this.exchangeValue(e.target.value)
       }} />
     )
@@ -51,7 +53,8 @@ class TotalPoints extends Component {
 }
 
 TotalPoints.propTypes = {
-  totalValue:PropTypes.any
+  totalValue:PropTypes.any,
+  maxvalue:PropTypes.number
 }
 const Total = connect(
   mapStateToProps,
