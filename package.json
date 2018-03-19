@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "nodemon": "nodemon server.js",
-    "webpackdev": "webpack-dev-server --hot --inline --colors --content-base ./build",
     "webpackdevserver": "webpack-dev-server --hot --inline --progress --colors --port 8868 --config ./webpack.config.js",
     "build": "webpack --progress --colors"
   },
