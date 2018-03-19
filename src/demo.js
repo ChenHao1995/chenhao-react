@@ -14,7 +14,9 @@ import Total from './Component/totalPoints.js'
 import ScoreStart from './Component/scoreToStart.js'
 function mapStateToProps(state){
   return {
-    
+    totalValue:state.totalValue,
+    scoreToStartForm:state.scoreToStartForm,
+    remarkValue:state.remarkValue,
   }
 }
 // function mapDispatchToProps(dispatch) {
@@ -26,7 +28,9 @@ function mapStateToProps(state){
 class Demo extends Component {
   constructor(props){
     super(props)
-    this.click = this.click.bind(this)
+    this.remarkChange = this.remarkChange.bind(this)
+    this.submit = this.submit.bind(this)
+    
     
   }
   componentDidMount(){
@@ -34,34 +38,106 @@ class Demo extends Component {
     
   }
 
-  click(){
-
-
-
-
-
+  remarkChange(value){
+    this.props.remark({
+      remarkValue:value
+    })
   }
   
+  submit(){
+    const { totalValue,scoreToStartForm,remarkValue } = this.props
+    console.log(scoreToStartForm)
+    if(totalValue == ''){
+      alert('请填写评分')
+      return 
+    }
+    if(remarkValue == ''){
+      alert('请填写评语')
+      return
+    }
+    if(remarkValue == ''){
+      alert('请填写评语')
+      return
+    }
+    if(scoreToStartForm[0].value == ''){
+      alert('请给语言打分')
+      return
+    }
+    if(scoreToStartForm[1].value == ''){
+      alert('请给文字打分')
+      return
+    }
+    if(scoreToStartForm[2].value == ''){
+      alert('请给声音打分')
+      return
+    }
+    if(scoreToStartForm[3].value == ''){
+      alert('请给速度打分')
+      return
+    }
+    if(scoreToStartForm[4].value == ''){
+      alert('请给想不出了打分')
+      return
+    }
+    const result = {}
+    result.score = totalValue
+    result.remark = remarkValue
+    Object.assign(result,scoreToStartForm)
+    console.log(result)
+
+  }
+
   render(){
+    const dataArray = [
+      {
+        stsTitle:'语言',
+        stsDetail:'描述性文字1'
+      },
+      {
+        stsTitle:'文字',
+        stsDetail:'描述性文字2'
+      },
+      {
+        stsTitle:'声音',
+        stsDetail:'描述性文字3'
+      },
+      {
+        stsTitle:'速度',
+        stsDetail:'描述性文字4'
+      },
+      {
+        stsTitle:'想不出了',
+        stsDetail:'描述性文字5'
+      },
+    ]
     return(
       <div className='demo-container'  >
 
         <div className='container1'>
           <span>评分</span><Total maxvalue={15} /><span>分值（15分）</span>
         </div>
-        <ScoreStart/>
-        
+        {
+          dataArray.map(function(value,index,array){
+            return <ScoreStart propkey={String(index)} stsTitle={value.stsTitle} stsDetail={value.stsDetail} key={index} />
+          })
+        }
         <div className='remark-box' >
           <div className='remark'>
             评语
           </div>
           <div className='t-box'>
-            <textarea className='textarea' >
+            <textarea className='textarea' onChange={(e)=>{
+              this.remarkChange(e.target.value)
+            }} >
             </textarea>
           </div>
         </div>
 
-        <button className='button'>
+        <button className='button' onClick={(e)=>{
+          e.preventDefault()
+          this.submit()
+
+        }}>
           提交
         </button>
       </div> 

@@ -1,19 +1,26 @@
-
-
-
 export function totalvalue(data){
 	return {
 		type:'TOTAL_VALUE',
 		data
 	}
 }
-export function increase(data){
+export function scoreToStartInitValue(data){
 	return {
-  	    type:'increase',
-  	    data
-
-        
+    type:'STS_INITVALUE',
+    data 
 	}
+}
+export function scoreToStartValue(data){
+  return {
+    type:'STS_VALUE',
+    data 
+  }
+}
+export function remark(data){
+  return {
+    type:'REMARK_VALUE',
+    data 
+  }
 }
 
 

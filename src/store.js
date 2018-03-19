@@ -5,6 +5,7 @@ import  reducer  from './reducer.js'
 
 const store = createStore(reducer,{
   totalValue:"",
-  scoreToStartForm:{}
+  scoreToStartForm:{},
+  remarkValue:''
 })
 export default store
