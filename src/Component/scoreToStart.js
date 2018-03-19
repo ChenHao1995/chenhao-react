@@ -42,7 +42,7 @@ class ScoreToStart extends Component {
 
   exchangeValue(value){
     const { propkey } = this.props
-    const funValue = String(value).indexOf('.') === -1 ? value : String(value).slice(0,String(value).indexOf('.')+2)
+    const funValue = String(value).indexOf('.') === -1 ? value : String(value).slice(0,String(value).indexOf('.'))
     const initValue = funValue > 100 ? 100 : funValue
     const startCount = this.getStart(Number(initValue))
     this.props.scoreToStartValue({
@@ -130,7 +130,7 @@ class ScoreToStart extends Component {
     return(
       <div className='score-component'>
         <div className='score-title'>
-          <span>{stsTitle}</span><input type='text' value={scoreValue} onChange={(e)=>{
+          <span>{stsTitle}</span><input type='number' value={scoreValue} onChange={(e)=>{
             this.exchangeValue(e.target.value)
           }} /><span>%</span>
         </div>

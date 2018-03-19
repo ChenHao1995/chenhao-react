@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/ChenHao1995/chenhao-react#readme",
   "devDependencies": {
+    "antd-mobile": "^2.1.8",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -36,6 +37,8 @@
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^2.1.2",
     "html-webpack-plugin": "^2.30.1",
+    "less": "^3.0.1",
+    "less-loader": "^4.1.0",
     "nodemon": "^1.14.11",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

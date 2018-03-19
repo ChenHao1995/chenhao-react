@@ -129,6 +129,10 @@ module.exports = {
             name:'fonts/[hash:8].[name].[ext]'
           }
         }
+      },
+      {
+        test: /\.less$/,
+        loader: 'style-loader!css-loader!less-loader'
       }
     ]
   },

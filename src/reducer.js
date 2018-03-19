@@ -13,6 +13,9 @@ export default function reducer(state,action){
     case 'REMARK_VALUE':
       state.remarkValue = action.data.remarkValue
       return Object.assign({},JSON.parse(JSON.stringify(state)))
+    case 'RECOMMEND_VALUE':
+      state.checked = action.data.checked
+      return Object.assign({},state)
     default :
       return state
   }

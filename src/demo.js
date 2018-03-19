@@ -10,6 +10,8 @@ import { connect } from 'react-redux'
 import democss from '../css/demo.css'
 import flexible from '../js/index.min.js'
 
+//import  antdstyle  from '../node_modules/antd-mobile/dist/antd-mobile.css';
+import { Switch } from 'antd-mobile';
 import Total from './Component/totalPoints.js'
 import ScoreStart from './Component/scoreToStart.js'
 function mapStateToProps(state){
@@ -17,6 +19,7 @@ function mapStateToProps(state){
     totalValue:state.totalValue,
     scoreToStartForm:state.scoreToStartForm,
     remarkValue:state.remarkValue,
+    checked:state.checked
   }
 }
 // function mapDispatchToProps(dispatch) {
@@ -30,6 +33,7 @@ class Demo extends Component {
     super(props)
     this.remarkChange = this.remarkChange.bind(this)
     this.submit = this.submit.bind(this)
+    this.recommendChange = this.recommendChange.bind(this)
     
     
   }
@@ -41,6 +45,12 @@ class Demo extends Component {
   remarkChange(value){
     this.props.remark({
       remarkValue:value
+    })
+  }
+
+  recommendChange(value){
+    this.props.recommend({
+      checked:value
     })
   }
   
@@ -83,11 +93,12 @@ class Demo extends Component {
     result.score = totalValue
     result.remark = remarkValue
     Object.assign(result,scoreToStartForm)
-    console.log(result)
+    console.log('样式为了节省时间没有全部还原，想要的值都在props里',result,this.props)
 
   }
 
   render(){
+    const { checked } = this.props
     const dataArray = [
       {
         stsTitle:'语言',
@@ -131,6 +142,14 @@ class Demo extends Component {
             }} >
             </textarea>
           </div>
+        </div>
+        <div>
+          <span>
+            推荐
+          </span>
+          <Switch  checked={checked} onChange={(e)=>{
+            this.recommendChange(!checked)
+          }}/>
         </div>
 
         <button className='button' onClick={(e)=>{

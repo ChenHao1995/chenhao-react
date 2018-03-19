@@ -22,6 +22,12 @@ export function remark(data){
     data 
   }
 }
+export function recommend(data){
+  return {
+    type:'RECOMMEND_VALUE',
+    data 
+  }
+}
 
 
 
