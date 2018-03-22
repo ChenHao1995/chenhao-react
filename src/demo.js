@@ -93,7 +93,7 @@ class Demo extends Component {
     result.score = totalValue
     result.remark = remarkValue
     Object.assign(result,scoreToStartForm)
-    console.log('样式为了节省时间没有全部还原，想要的值都在props里',result,this.props)
+    console.log(result,this.props)
 
   }
 
