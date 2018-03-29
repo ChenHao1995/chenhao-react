@@ -38,6 +38,7 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^2.1.2",
+    "highcharts": "^6.0.7",
     "html-webpack-plugin": "^2.30.1",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",

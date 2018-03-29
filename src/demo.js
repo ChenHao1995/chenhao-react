@@ -9,7 +9,7 @@ import * as actions from './action.js'
 import { connect } from 'react-redux'
 import democss from '../css/demo.css'
 import flexible from '../js/index.min.js'
-
+//import { bindActionCreators } from 'redux'
 //import  antdstyle  from '../node_modules/antd-mobile/dist/antd-mobile.css';
 import { Switch } from 'antd-mobile';
 import Total from './Component/totalPoints.js'
@@ -24,7 +24,7 @@ function mapStateToProps(state){
 }
 // function mapDispatchToProps(dispatch) {
 //   return {
-//     onIncreaseClick: () => dispatch(action.increaseAction)
+//     actions: bindActionCreators(Actions, dispatch)
 //   }
 // }
 
@@ -34,6 +34,7 @@ class Demo extends Component {
     this.remarkChange = this.remarkChange.bind(this)
     this.submit = this.submit.bind(this)
     this.recommendChange = this.recommendChange.bind(this)
+    console.log(this.props)
     
     
   }

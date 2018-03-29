@@ -10,6 +10,18 @@ import { connect } from 'react-redux'
 import democss from '../css/demo.css'
 import flexible from '../js/index.min.js'
 
+import Highcharts from 'highcharts/highstock';
+import HighchartsMore from 'highcharts/highcharts-more';
+import HighchartsDrilldown from 'highcharts/modules/drilldown';
+import Highcharts3D from 'highcharts/highcharts-3d';
+
+HighchartsMore(Highcharts)
+HighchartsDrilldown(Highcharts);
+Highcharts3D(Highcharts);
+
+//import * as Highcharts from 'highcharts'
+// import * as Exporting from 'highcharts/modules/exporting'
+//Exporting(Highcharts)
 //import  antdstyle  from '../node_modules/antd-mobile/dist/antd-mobile.css';
 function mapStateToProps(state){
   return {
@@ -30,8 +42,36 @@ class Test extends Component {
     
   }
   componentDidMount(){
-    
-    
+
+    var options = {
+      chart: {
+        type: 'column',
+        style:{
+          color:'#991234'
+        },
+        inverted: false
+      },
+      title: {
+        text: '一个图表'
+      },
+      xAxis: {
+        categories: ['Apples', 'Bananas', 'Oranges']
+      },
+      yAxis: {
+        title: {
+          text: 'Fruit eaten'
+        }
+      },
+      series: [{
+        name: 'Jane',
+        data: [1, 1, 4]
+      }, {
+        name: 'John',
+        data: [5, 7, 3]
+      }]
+    }
+    var chart = Highcharts.chart('container', options);
+
   }
 
   
@@ -41,7 +81,8 @@ class Test extends Component {
   render(){
     return (
       <div>
-        hahah
+        <div id="map" style={{'width':800,'height': 500}}></div>
+        <div id="container" style={{'width':800,'height': 500}}></div>
       </div>
     )
   }
