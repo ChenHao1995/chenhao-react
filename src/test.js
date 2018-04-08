@@ -1,23 +1,23 @@
 import React,{ Component } from 'react'
-import {render} from 'react-dom';
+//import {render} from 'react-dom'
 //import { Router,hashHistory,Route,BrowserRouter,Switch } from 'react-router-dom'
-import { createStore } from 'redux'
-import {PropTypes} from 'prop-types'
+//import { createStore } from 'redux'
+//import {PropTypes} from 'prop-types'
 //import AppRouter from './router.js'
-import store from './store.js'
+//import store from './store.js'
 import * as actions from './action.js'
 import { connect } from 'react-redux'
-import democss from '../css/demo.css'
-import flexible from '../js/index.min.js'
+//import democss from '../css/demo.css'
+//import flexible from '../js/index.min.js'
 
-import Highcharts from 'highcharts/highstock';
-import HighchartsMore from 'highcharts/highcharts-more';
-import HighchartsDrilldown from 'highcharts/modules/drilldown';
-import Highcharts3D from 'highcharts/highcharts-3d';
+import Highcharts from 'highcharts/highstock'
+import HighchartsMore from 'highcharts/highcharts-more'
+import HighchartsDrilldown from 'highcharts/modules/drilldown'
+import Highcharts3D from 'highcharts/highcharts-3d'
 
 HighchartsMore(Highcharts)
-HighchartsDrilldown(Highcharts);
-Highcharts3D(Highcharts);
+HighchartsDrilldown(Highcharts)
+Highcharts3D(Highcharts)
 
 //import * as Highcharts from 'highcharts'
 // import * as Exporting from 'highcharts/modules/exporting'
@@ -43,34 +43,34 @@ class Test extends Component {
   }
   componentDidMount(){
 
-    var options = {
-      chart: {
-        type: 'column',
-        style:{
-          color:'#991234'
-        },
-        inverted: false
-      },
-      title: {
-        text: '一个图表'
-      },
-      xAxis: {
-        categories: ['Apples', 'Bananas', 'Oranges']
-      },
-      yAxis: {
-        title: {
-          text: 'Fruit eaten'
-        }
-      },
-      series: [{
-        name: 'Jane',
-        data: [1, 1, 4]
-      }, {
-        name: 'John',
-        data: [5, 7, 3]
-      }]
-    }
-    var chart = Highcharts.chart('container', options);
+    // var options = {
+    //   chart: {
+    //     type: 'column',
+    //     style:{
+    //       color:'#991234'
+    //     },
+    //     inverted: false
+    //   },
+    //   title: {
+    //     text: '一个图表'
+    //   },
+    //   xAxis: {
+    //     categories: ['Apples', 'Bananas', 'Oranges']
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Fruit eaten'
+    //     }
+    //   },
+    //   series: [{
+    //     name: 'Jane',
+    //     data: [1, 1, 4]
+    //   }, {
+    //     name: 'John',
+    //     data: [5, 7, 3]
+    //   }]
+    // }
+    //var chart = Highcharts.chart('container', options)
 
   }
 

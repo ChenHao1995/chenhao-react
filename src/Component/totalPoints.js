@@ -1,10 +1,10 @@
 import React,{ Component } from 'react'
-import {render} from 'react-dom';
+//import {render} from 'react-dom'
 //import { Router,hashHistory,Route,BrowserRouter,Switch } from 'react-router-dom'
-import { createStore } from 'redux'
+//import { createStore } from 'redux'
 import {PropTypes} from 'prop-types'
 //import AppRouter from './router.js'
-import store from '../store.js'
+//import store from '../store.js'
 import * as actions from '../action.js'
 import { connect } from 'react-redux'
 
@@ -54,7 +54,8 @@ class TotalPoints extends Component {
 
 TotalPoints.propTypes = {
   totalValue:PropTypes.any,
-  maxvalue:PropTypes.number
+  maxvalue:PropTypes.number,
+  totalvalue:PropTypes.any
 }
 const Total = connect(
   mapStateToProps,

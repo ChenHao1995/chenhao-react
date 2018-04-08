@@ -66,10 +66,24 @@ module.exports = {
         removeComments:false,    //移除HTML中的注释
         collapseWhitespace:false    //删除空白符与换行符
       }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      eslint: {
+        configFile: path.join(__dirname, './.eslintrc.json')
+      }
     })
   ],
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.js$|\.jsx$/,
+        loader: 'eslint-loader',
+        options:{
+          fix:true
+        },
+        exclude: [/node_modules/, /assets/]
+      },
       {
         test: /\.js$|\.jsx$/,
         use: {
@@ -157,6 +171,9 @@ module.exports = {
     //   },
     // },
   },
+  // eslint: {
+  //   configFile: path.join(__dirname, './.eslintrc.json')
+  // },
   resolve: {
     extensions: ['.web.js', '.js', '.jsx', '.less', '.css']
   }

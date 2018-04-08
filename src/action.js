@@ -1,14 +1,14 @@
 export function totalvalue(data){
-	return {
-		type:'TOTAL_VALUE',
-		data
-	}
+  return {
+    type:'TOTAL_VALUE',
+    data
+  }
 }
 export function scoreToStartInitValue(data){
-	return {
+  return {
     type:'STS_INITVALUE',
     data 
-	}
+  }
 }
 export function scoreToStartValue(data){
   return {

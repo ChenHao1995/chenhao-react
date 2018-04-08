@@ -1,17 +1,17 @@
 import React,{ Component } from 'react'
-import {render} from 'react-dom';
+//import {render} from 'react-dom'
 //import { Router,hashHistory,Route,BrowserRouter,Switch } from 'react-router-dom'
-import { createStore } from 'redux'
+//import { createStore } from 'redux'
 import {PropTypes} from 'prop-types'
 //import AppRouter from './router.js'
-import store from './store.js'
+//import store from './store.js'
 import * as actions from './action.js'
 import { connect } from 'react-redux'
 import democss from '../css/demo.css'
-import flexible from '../js/index.min.js'
+//import flexible from '../js/index.min.js'
 //import { bindActionCreators } from 'redux'
 //import  antdstyle  from '../node_modules/antd-mobile/dist/antd-mobile.css';
-import { Switch } from 'antd-mobile';
+import { Switch } from 'antd-mobile'
 import Total from './Component/totalPoints.js'
 import ScoreStart from './Component/scoreToStart.js'
 function mapStateToProps(state){
@@ -166,8 +166,12 @@ class Demo extends Component {
 }
 
 Demo.propTypes = {
- 
-  
+  remark:PropTypes.any,
+  recommend:PropTypes.any,
+  totalValue:PropTypes.any,
+  scoreToStartForm:PropTypes.any,
+  remarkValue:PropTypes.any,
+  checked:PropTypes.any
 }
 const App = connect(
   mapStateToProps,
