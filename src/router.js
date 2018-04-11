@@ -9,12 +9,13 @@ import TestComponent from './test.js'
 //路由
 render((
   <Provider store={store}>
-	  <BrowserRouter>
-	    <Switch>
-	      <Route path='/chen' component={App} />
-        <Route path='/test' component={TestComponent} />
-	    </Switch>
-	  </BrowserRouter>
+    <BrowserRouter>
+	  <Switch>
+	    <Route path='/chen' component={App}/>
+	    <Route path='/test' component={TestComponent} />
+        
+	  </Switch>
+    </BrowserRouter>
   </Provider>
 ),document.getElementById('root'))
 

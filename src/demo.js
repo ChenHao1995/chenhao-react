@@ -8,7 +8,7 @@ import {PropTypes} from 'prop-types'
 import * as actions from './action.js'
 import { connect } from 'react-redux'
 import democss from '../css/demo.css'
-//import flexible from '../js/index.min.js'
+import flexible from '../js/index.min.js'
 //import { bindActionCreators } from 'redux'
 //import  antdstyle  from '../node_modules/antd-mobile/dist/antd-mobile.css';
 import { Switch } from 'antd-mobile'
@@ -160,6 +160,7 @@ class Demo extends Component {
         }}>
           提交
         </button>
+        {this.props.children}
       </div> 
     )
   }
@@ -171,7 +172,8 @@ Demo.propTypes = {
   totalValue:PropTypes.any,
   scoreToStartForm:PropTypes.any,
   remarkValue:PropTypes.any,
-  checked:PropTypes.any
+  checked:PropTypes.any,
+  children:PropTypes.any
 }
 const App = connect(
   mapStateToProps,
