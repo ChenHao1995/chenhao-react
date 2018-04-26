@@ -1,23 +1,22 @@
-export default function reducer(state,action){
+export default function demoReducer(state={},action){
   console.log(state,action)
   switch(action.type){
     case 'TOTAL_VALUE' :
-      state.totalValue = action.data.totalValue
+      state.totalValue && (state.totalValue = action.data.totalValue)
       return Object.assign({},state)
     case 'STS_INITVALUE':
-      Object.assign(state.scoreToStartForm,action.data)
+      state.scoreToStartForm && action.data && Object.assign(state.scoreToStartForm,action.data)
       return Object.assign({},JSON.parse(JSON.stringify(state)))
     case 'STS_VALUE':
-      Object.assign(state.scoreToStartForm,action.data)
+      state.scoreToStartForm && Object.assign(state.scoreToStartForm,action.data)
       return Object.assign({},JSON.parse(JSON.stringify(state)))
     case 'REMARK_VALUE':
-      state.remarkValue = action.data.remarkValue
+      state.remarkValue && (state.remarkValue = action.data.remarkValue)
       return Object.assign({},JSON.parse(JSON.stringify(state)))
     case 'RECOMMEND_VALUE':
-      state.checked = action.data.checked
+      state.checked && (state.checked = action.data.checked)
       return Object.assign({},state)
     default :
       return state
   }
-
 }
