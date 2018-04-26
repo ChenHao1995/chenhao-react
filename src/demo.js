@@ -5,15 +5,16 @@ import React,{ Component } from 'react'
 import {PropTypes} from 'prop-types'
 //import AppRouter from './router.js'
 //import store from './store.js'
-import * as actions from './action.js'
+import * as Actions from './action.js'
 import { connect } from 'react-redux'
 import democss from '../css/demo.css'
 import flexible from '../js/index.min.js'
-//import { bindActionCreators } from 'redux'
 //import  antdstyle  from '../node_modules/antd-mobile/dist/antd-mobile.css';
 import { Switch } from 'antd-mobile'
 import Total from './Component/totalPoints.js'
 import ScoreStart from './Component/scoreToStart.js'
+import { bindActionCreators } from 'redux'
+
 function mapStateToProps(state){
   return {
     totalValue:state.totalValue,
@@ -22,13 +23,13 @@ function mapStateToProps(state){
     checked:state.checked
   }
 }
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(Actions, dispatch)
-//   }
-// }
-
-class Demo extends Component {
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  }
+}
+@connect(mapStateToProps,mapDispatchToProps)
+export default class Demo extends Component {
   constructor(props){
     super(props)
     this.remarkChange = this.remarkChange.bind(this)
@@ -44,20 +45,20 @@ class Demo extends Component {
   }
 
   remarkChange(value){
-    this.props.remark({
+    this.props.actions.remark({
       remarkValue:value
     })
   }
 
   recommendChange(value){
-    this.props.recommend({
+    this.props.actions.recommend({
       checked:value
     })
   }
   
   submit(){
+    console.log(PropTypes)
     const { totalValue,scoreToStartForm,remarkValue } = this.props
-    console.log(scoreToStartForm)
     if(totalValue == ''){
       alert('请填写评分')
       return 
@@ -99,6 +100,7 @@ class Demo extends Component {
   }
 
   render(){
+    console.log(this.props)
     const { checked } = this.props
     const dataArray = [
       {
@@ -173,12 +175,9 @@ Demo.propTypes = {
   scoreToStartForm:PropTypes.any,
   remarkValue:PropTypes.any,
   checked:PropTypes.any,
-  children:PropTypes.any
+  children:PropTypes.any,
+  actions:PropTypes.object
 }
-const App = connect(
-  mapStateToProps,
-  actions
-)(Demo)
-export default App
+
 
 

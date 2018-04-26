@@ -5,21 +5,22 @@ import React,{ Component } from 'react'
 import {PropTypes} from 'prop-types'
 //import AppRouter from './router.js'
 //import store from '../store.js'
-import * as actions from '../action.js'
+import * as Actions from '../action.js'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 function mapStateToProps(state){
   return {
     scoreToStartForm:state.scoreToStartForm
   }
 }
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     onIncreaseClick: () => dispatch(action.increaseAction)
-//   }
-// }
-
-class ScoreToStart extends Component {
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  }
+}
+@connect(mapStateToProps,mapDispatchToProps)
+export default class ScoreToStart extends Component {
   constructor(props){
     super(props)
     console.log('scoreToStart',this.props)
@@ -28,7 +29,7 @@ class ScoreToStart extends Component {
   }
   componentWillMount(){
     const propkey = this.props.propkey
-    this.props.scoreToStartInitValue({
+    this.props.actions.scoreToStartInitValue({
       [propkey]:{
         value:'',
         startCount:0
@@ -45,7 +46,7 @@ class ScoreToStart extends Component {
     const funValue = String(value).indexOf('.') === -1 ? value : String(value).slice(0,String(value).indexOf('.'))
     const initValue = funValue > 100 ? 100 : funValue
     const startCount = this.getStart(Number(initValue))
-    this.props.scoreToStartValue({
+    this.props.actions.scoreToStartValue({
       [propkey]:{
         value:initValue,
         startCount:startCount
@@ -202,10 +203,8 @@ ScoreToStart.propTypes = {
   scoreToStartValue:PropTypes.any,
   stsDetail:PropTypes.any,
   stsTitle:PropTypes.any,
-  scoreToStartForm:PropTypes.any
+  scoreToStartForm:PropTypes.any,
+  actions:PropTypes.object
 }
-const ScoreStart = connect(
-  mapStateToProps,
-  actions
-)(ScoreToStart)
-export default ScoreStart
+
+ 

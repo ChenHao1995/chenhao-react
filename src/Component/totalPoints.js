@@ -5,8 +5,9 @@ import React,{ Component } from 'react'
 import {PropTypes} from 'prop-types'
 //import AppRouter from './router.js'
 //import store from '../store.js'
-import * as actions from '../action.js'
+import * as Actions from '../action.js'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 function mapStateToProps(state){
   return {
@@ -18,8 +19,13 @@ function mapStateToProps(state){
 //     onIncreaseClick: () => dispatch(action.increaseAction)
 //   }
 // }
-
-class TotalPoints extends Component {
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  }
+}
+@connect(mapStateToProps,mapDispatchToProps)
+export default class TotalPoints extends Component {
   constructor(props){
     super(props)
     //console.log(this.props)
@@ -35,7 +41,7 @@ class TotalPoints extends Component {
   exchangeValue(value){
     const { maxvalue } = this.props
     const funValue = String(value).indexOf('.') === -1 ? value : String(value).slice(0,String(value).indexOf('.')+2)
-    this.props.totalvalue({
+    this.props.actions.totalvalue({
       totalValue:funValue > maxvalue ? maxvalue :funValue
     })
   }
@@ -55,10 +61,11 @@ class TotalPoints extends Component {
 TotalPoints.propTypes = {
   totalValue:PropTypes.any,
   maxvalue:PropTypes.number,
-  totalvalue:PropTypes.any
+  totalvalue:PropTypes.any,
+  actions:PropTypes.object
 }
-const Total = connect(
-  mapStateToProps,
-  actions
-)(TotalPoints)
-export default Total
+// const Total = connect(
+//   mapStateToProps,
+//   actions
+// )(TotalPoints)
+// export default Total
