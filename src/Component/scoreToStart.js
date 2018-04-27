@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux'
 
 function mapStateToProps(state){
   return {
-    scoreToStartForm:state.scoreToStartForm
+    scoreToStartForm:state.demoreducer.scoreToStartForm
   }
 }
 function mapDispatchToProps(dispatch) {

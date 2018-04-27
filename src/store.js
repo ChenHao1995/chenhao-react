@@ -4,10 +4,12 @@ import { createStore,combineReducers } from 'redux'
 import demoreducer from './reducer'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 let initState = {
-  totalValue:'',
-  scoreToStartForm:{},
-  remarkValue:'',
-  checked:false
+  demoreducer:{
+    totalValue:'',
+    scoreToStartForm:{},
+    remarkValue:'',
+    checked:false
+  }
 }
 
 console.log(demoreducer)

@@ -16,11 +16,12 @@ import ScoreStart from './Component/scoreToStart.js'
 import { bindActionCreators } from 'redux'
 
 function mapStateToProps(state){
+  console.log('chenhao',state)
   return {
-    totalValue:state.totalValue,
-    scoreToStartForm:state.scoreToStartForm,
-    remarkValue:state.remarkValue,
-    checked:state.checked
+    totalValue:state.demoreducer.totalValue,
+    scoreToStartForm:state.demoreducer.scoreToStartForm,
+    remarkValue:state.demoreducer.remarkValue,
+    checked:state.demoreducer.checked
   }
 }
 function mapDispatchToProps(dispatch) {

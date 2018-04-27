@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux'
 
 function mapStateToProps(state){
   return {
-    totalValue:state.totalValue
+    totalValue:state.demoreducer.totalValue
   }
 }
 // function mapDispatchToProps(dispatch) {
