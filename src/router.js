@@ -9,7 +9,9 @@ import TestComponent from './test.js'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 //import { browserHistory } from 'react-router'
 //路由
-//const history = syncHistoryWithStore(browserHistory, store)
+const history = syncHistoryWithStore(browserHistory, store)
+console.debug(history)
+history.listen(location => analyticsService.track(location.pathname))
 render((
   <Provider store={store}>
     <BrowserRouter>

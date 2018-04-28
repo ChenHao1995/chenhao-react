@@ -14,8 +14,8 @@ let initState = {
 
 console.log(demoreducer)
 const rootReducer= combineReducers({
-  demoreducer
-  //routing: routerReducer
+  demoreducer,
+  routing: routerReducer
 })
 const store = createStore(rootReducer,initState)
 export default store
