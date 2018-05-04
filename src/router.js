@@ -6,12 +6,20 @@ import { Provider } from 'react-redux'
 import store from './store.js'
 import App from './demo.js'
 import TestComponent from './test.js'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { syncHistoryWithStore, routerReducer,routerMiddleware } from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
 //import { browserHistory } from 'react-router'
 //路由
-const history = syncHistoryWithStore(browserHistory, store)
-console.debug(history)
-history.listen(location => analyticsService.track(location.pathname))
+// const history = syncHistoryWithStore(browserHistory, store)
+// console.debug(history)
+//history.listen(location => analyticsService.track(location.pathname))
+const history = createHistory()
+
+export function middleWare(){
+  const middleware = routerMiddleware(history)
+  return middleware
+}
+
 render((
   <Provider store={store}>
     <BrowserRouter>
@@ -23,5 +31,8 @@ render((
     </BrowserRouter>
   </Provider>
 ),document.getElementById('root'))
+
+
+
 
 
