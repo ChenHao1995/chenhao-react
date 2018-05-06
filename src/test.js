@@ -44,7 +44,7 @@ export default class Test extends Component {
   constructor(props){
     super(props)
     console.log(props)
-    this.props.routerActions.push('/chen')
+    //this.props.routerActions.push('/chen')
     
     
     

@@ -103,11 +103,11 @@ export default class Demo extends Component {
   }
 
   onhref = ()=>{
-    //const { routerActions } = this.props
+    const { routerActions } = this.props
     //console.log(routerActions.go)
-    //routerActions.push('/test')
+    routerActions.push('/test')
     console.log(push)
-    store.dispatch(push('/test'))
+    //store.dispatch(push('/test'))
 
   }
 
