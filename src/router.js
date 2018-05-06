@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import store from './store.js'
 import App from './demo.js'
 import TestComponent from './test.js'
-import { syncHistoryWithStore, routerReducer,routerMiddleware } from 'react-router-redux'
+import { syncHistoryWithStore, routerReducer,routerMiddleware,ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 //import { browserHistory } from 'react-router'
 //路由
@@ -15,22 +15,22 @@ import createHistory from 'history/createBrowserHistory'
 //history.listen(location => analyticsService.track(location.pathname))
 const history = createHistory()
 
-export function middleWare(){
-  const middleware = routerMiddleware(history)
-  return middleware
-}
+
 
 render((
   <Provider store={store}>
-    <BrowserRouter>
-	  <Switch>
-	    <Route path='/chen' component={App}/>
-	    <Route path='/test' component={TestComponent} />
-        
-	  </Switch>
-    </BrowserRouter>
+    <ConnectedRouter history={history}>
+	    <div>
+	    <Route exact path='/chen' component={App}/>
+	    <Route exact path='/test' component={TestComponent} />
+      </div>
+    </ConnectedRouter>
   </Provider>
 ),document.getElementById('root'))
+
+export {
+  history
+}
 
 
 
