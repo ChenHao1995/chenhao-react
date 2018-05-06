@@ -1,5 +1,5 @@
 export default function demoReducer(state={},action){
-  console.log('chenhaochenhao',state,action)
+  console.log('reducer',state,action)
   switch(action.type){
     case 'TOTAL_VALUE' :
       state.totalValue = action.data.totalValue

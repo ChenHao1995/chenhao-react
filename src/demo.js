@@ -4,7 +4,7 @@ import React,{ Component } from 'react'
 //import { createStore } from 'redux'
 import {PropTypes} from 'prop-types'
 //import AppRouter from './router.js'
-//import store from './store.js'
+import store from './store.js'
 import * as Actions from './action.js'
 import { connect } from 'react-redux'
 import democss from '../css/demo.css'
@@ -14,9 +14,10 @@ import { Switch } from 'antd-mobile'
 import Total from './Component/totalPoints.js'
 import ScoreStart from './Component/scoreToStart.js'
 import { bindActionCreators } from 'redux'
+import {routerActions,push} from 'react-router-redux'
 
 function mapStateToProps(state){
-  console.log('chenhao',state)
+  console.log('demo',state)
   return {
     totalValue:state.demoreducer.totalValue,
     scoreToStartForm:state.demoreducer.scoreToStartForm,
@@ -26,7 +27,8 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Actions, dispatch)
+    actions: bindActionCreators(Actions, dispatch),
+    routerActions: bindActionCreators(routerActions, dispatch)
   }
 }
 @connect(mapStateToProps,mapDispatchToProps)
@@ -100,6 +102,15 @@ export default class Demo extends Component {
 
   }
 
+  onhref = ()=>{
+    //const { routerActions } = this.props
+    //console.log(routerActions.go)
+    //routerActions.push('/test')
+    console.log(push)
+    store.dispatch(push('/test'))
+
+  }
+
   render(){
     console.log(this.props)
     const { checked } = this.props
@@ -163,6 +174,10 @@ export default class Demo extends Component {
         }}>
           提交
         </button>
+
+        <button onClick={this.onhref}>
+          跳转
+        </button>
         {this.props.children}
       </div> 
     )
@@ -177,7 +192,8 @@ Demo.propTypes = {
   remarkValue:PropTypes.any,
   checked:PropTypes.any,
   children:PropTypes.any,
-  actions:PropTypes.object
+  actions:PropTypes.object,
+  routerActions:PropTypes.object
 }
 
 
