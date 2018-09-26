@@ -154,7 +154,9 @@ module.exports = {
     contentBase: './dist',
     hot: true,
     host: '127.0.0.1',
-    historyApiFallback: true
+    historyApiFallback: true,
+    //压缩
+    compress:true
     // historyApiFallback: {
     //   rewrites: [
     //     { from: /^\/hr/, to: '/hr.html' },
