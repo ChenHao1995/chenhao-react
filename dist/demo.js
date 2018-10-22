@@ -5599,8 +5599,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     _react2.default.createElement(
       'div',
       null,
-      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/chen', component: _demo2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/test', component: _test2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/app/index', component: _demo2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/app/test', component: _test2.default })
     )
   )
 ), document.getElementById('root')); //Router,hashHistory,
