@@ -15,6 +15,7 @@ import Total from './Component/totalPoints.js'
 import ScoreStart from './Component/scoreToStart.js'
 import { bindActionCreators } from 'redux'
 import {routerActions,push} from 'react-router-redux'
+//import Api from '../api'
 
 function mapStateToProps(state){
   console.log('demo',state)
@@ -44,6 +45,10 @@ export default class Demo extends Component {
   }
   componentDidMount(){
     console.log(PropTypes)
+    // Api({
+    //   path: '/xiaonei-api/innnernet/application/check',
+    //   method: 'POST'
+    // })
     
   }
 

@@ -29,7 +29,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    demo:['./src/router.js']
+    demo:['./src/router/index.js']
   },
   output: {
     path: __dirname + '/dist',

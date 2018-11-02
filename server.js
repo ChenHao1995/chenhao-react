@@ -16,7 +16,10 @@ app.set('views',__dirname + '/dist')
 app.use('/app',express.static('./dist'))
 //app.use('/', proxy({target: 'http://127.0.0.1:8868/', changeOrigin: true}));
 
-app.use('/app/index',function(req,res,next){
+// app.use('/app/index',function(req,res,next){
+//   res.render('index.html')
+// })
+app.use('*',function(req,res,next){
   res.render('index.html')
 })
 // app.use('/app/style.css',function(req,res,next){
