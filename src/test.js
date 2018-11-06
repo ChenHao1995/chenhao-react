@@ -15,6 +15,7 @@ import HighchartsMore from 'highcharts/highcharts-more'
 import HighchartsDrilldown from 'highcharts/modules/drilldown'
 import Highcharts3D from 'highcharts/highcharts-3d'
 import {routerActions} from 'react-router-redux'
+//import ScoreStart from './Component/scoreToStart.js'
 HighchartsMore(Highcharts)
 HighchartsDrilldown(Highcharts)
 Highcharts3D(Highcharts)
@@ -50,6 +51,9 @@ export default class Test extends Component {
     
   }
   componentDidMount(){
+    console.log(import('./Component/scoreToStart.js').then(function(data){
+      console.log(data)
+    }))
 
     // var options = {
     //   chart: {
@@ -82,15 +86,38 @@ export default class Test extends Component {
 
   }
 
-  
-  
-  
-
   render(){
+    const dataArray = [
+      {
+        stsTitle:'语言',
+        stsDetail:'描述性文字1'
+      },
+      {
+        stsTitle:'文字',
+        stsDetail:'描述性文字2'
+      },
+      {
+        stsTitle:'声音',
+        stsDetail:'描述性文字3'
+      },
+      {
+        stsTitle:'速度',
+        stsDetail:'描述性文字4'
+      },
+      {
+        stsTitle:'想不出了',
+        stsDetail:'描述性文字5'
+      },
+    ]
     return (
       <div>
         <div id="map" style={{'width':800,'height': 500}}>这是一个test</div>
         <div id="container" style={{'width':800,'height': 500}}></div>
+        {/*
+          dataArray.map(function(value,index,array){
+            return <ScoreStart propkey={String(index)} stsTitle={value.stsTitle} stsDetail={value.stsDetail} key={index} />
+          })
+        */}
       </div>
     )
   }
@@ -98,8 +125,6 @@ export default class Test extends Component {
 
 Test.propTypes = {
   routerActions:PropTypes.any
- 
-  
 }
 // const TestComponent = connect(
 //   mapStateToProps,
