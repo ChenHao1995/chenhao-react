@@ -12,10 +12,15 @@ import flexible from '../js/index.min.js'
 //import  antdstyle  from '../node_modules/antd-mobile/dist/antd-mobile.css';
 import { Switch } from 'antd-mobile'
 import Total from './Component/totalPoints.js'
-import ScoreStart from './Component/scoreToStart.js'
+//import ScoreStart from './Component/scoreToStart.js'
 import { bindActionCreators } from 'redux'
 import {routerActions,push} from 'react-router-redux'
+import createClass from 'create-react-class'
 //import Api from '../api'
+
+
+
+
 
 function mapStateToProps(state){
   console.log('demo',state)
@@ -40,16 +45,37 @@ export default class Demo extends Component {
     this.submit = this.submit.bind(this)
     this.recommendChange = this.recommendChange.bind(this)
     console.log(this.props)
-    
-    
+    this.state = {
+      ScoreStart: createClass({
+        render(){
+          return <div>初始化</div>
+        }
+      })
+    }
   }
   componentDidMount(){
-    console.log(PropTypes)
+    //console.log(PropTypes)
     // Api({
     //   path: '/xiaonei-api/innnernet/application/check',
     //   method: 'POST'
     // })
+    //异步加载组件
+    this.ScoreStartAsync().then((data) =>{
+      this.setState({
+        ScoreStart: data
+      })
+    })
     
+  }
+
+  ScoreStartAsync = () => {
+    return new Promise(function(resolve, reject){
+      require.ensure([],function(require){
+        let result = require('./Component/scoreToStart.js')
+        console.log(result.default,'ScoreStartAsync组件')
+        resolve(result.default)
+      })
+    })
   }
 
   remarkChange(value){
@@ -117,6 +143,7 @@ export default class Demo extends Component {
   }
 
   render(){
+    const ScoreStart = this.state.ScoreStart
     console.log(this.props)
     const { checked } = this.props
     const dataArray = [

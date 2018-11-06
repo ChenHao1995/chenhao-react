@@ -1,8 +1,8 @@
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack')
+var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 // module.exports = {
 //   entry: './src/demo.js',
 //   output: {
@@ -33,10 +33,12 @@ module.exports = {
   },
   output: {
     path: __dirname + '/dist',
-    filename: "[name].js",
-    //publicPath:'/app/'
+    filename: '[name].[chunkhash:8].js',
+    chunkFilename: '[name].[chunkhash:8].min.js',
+    publicPath:'/'
   },
   plugins:[
+    new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __DEVCLIENT__: true,

@@ -1,8 +1,8 @@
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack')
+var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-let rewrite = require('express-urlrewrite');
+let rewrite = require('express-urlrewrite')
 
 // module.exports = {
 //   entry: './src/demo.js',
@@ -34,8 +34,9 @@ module.exports = {
   },
   output: {
     path: __dirname + '/dist',
-    filename: "[name].js",
-    //publicPath:'/'
+    filename: '[name].js',
+    chunkFilename: '[name].[chunkhash:8].min.js',
+    publicPath:'/'
   },
   plugins:[
     new webpack.DefinePlugin({
@@ -151,6 +152,7 @@ module.exports = {
       }
     ]
   },
+  devtool: 'source-map',
   devServer: {
     //在公共路径下引入资源的路径
     //contentBase: '/',
