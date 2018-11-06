@@ -5,7 +5,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import store,{history} from '../store'
 //import App from '../demo.js'
-import TestComponent from '../test.js'
+//import TestComponent from '../test.js'
 import { syncHistoryWithStore, routerReducer,routerMiddleware,ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 //import createMemoryHistory from 'history/createMemoryHistory'
@@ -23,7 +23,7 @@ render((
     <ConnectedRouter history={history}>
       <div>
         <Route exact path='/app/index' component={ansycComponent(() => import('../demo.js'))}/>
-        <Route exact path='/app/test' component={TestComponent} />
+        <Route exact path='/app/test' component={ansycComponent(() => import('../test.js'))} />
         <Route exact path='/app/async' component={ansycComponent(() => import('../demo.js'))} />
       </div>
     </ConnectedRouter>
