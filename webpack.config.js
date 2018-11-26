@@ -27,14 +27,14 @@ let rewrite = require('express-urlrewrite')
 // };
 
 
-
 module.exports = {
   entry: {
     demo:['./src/router/index.js']
   },
   output: {
+    // path: path.resolve(__dirname, 'dist'),
     path: __dirname + '/dist',
-    filename: '[name].js',
+    filename: '[name].[hash].js',
     chunkFilename: '[name].[chunkhash:8].min.js',
     publicPath:'/'
   },
@@ -60,7 +60,7 @@ module.exports = {
       htmlContent:'',
       initialData:'',
       production: false,
-      chunks: ['name'],
+      chunks: ['demo'],
       jsname:'name',
       //staticPath: ['style.css'],
       hash:false,    //为静态资源生成hash值
@@ -158,22 +158,22 @@ module.exports = {
     //contentBase: '/',
     hot: true,
     host: '127.0.0.1',
-    //historyApiFallback: true,
+    historyApiFallback: true,
     //压缩
     compress:true,
-    // before: function(app, server){
-    //   app.use(rewrite(/\.js$/,'/demo.js'))
-    //   app.use(rewrite(/\.css$/,'/style.css'))
-    //   app.use(rewrite('/app/*','/index.html'))
-    // }
+    before: function(app, server){
+      // app.use(rewrite(/\.js$/,'/demo.js'))
+      app.use(rewrite(/\.css$/,'/style.css'))
+      // app.use(rewrite('/app/*','/index.html'))
+    }
     //publicPath:'/app/'
-    historyApiFallback: {
-      rewrites: [
-        { from: /\.js$/, to: '/demo.js' },
-        { from: /\.css$/, to: '/style.css' },
-        { from: /^\//, to: '/index.html' },
-      ]
-    },
+    // historyApiFallback: {
+    //   rewrites: [
+    //     // { from: /\.js$/, to: '/demo.js' },
+    //     { from: /\.css$/, to: '/style.css' },
+    //     // { from: /^\//, to: '/index.html' },
+    //   ]
+    // },
     // proxy: {
     //   '/index.html': {
     //     target: 'http://127.0.0.1:6868',
