@@ -8,7 +8,7 @@
     "start": "node server.js",
     "nodemon": "nodemon server.js",
     "webpackdevserver": "webpack-dev-server --hot --inline --progress --colors --port 8868 --config ./webpack.config.js",
-    "prod": "webpack --config ./webpack.config.prod.js"
+    "prod": "webpack --config ./webpack.config.prod.js && npm run nodemon"
   },
   "repository": {
     "type": "git",
