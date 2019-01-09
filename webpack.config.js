@@ -32,6 +32,8 @@ module.exports = {
     flexible: ["./js/index.min.js"],
     redux: "redux",
     reduxSagas: "redux-saga",
+    babelPolyfill: "babel-polyfill",
+    highcharts: "highcharts",
     index: ["./src/router/index.js"]
   },
   output: {
@@ -65,7 +67,15 @@ module.exports = {
       htmlContent: "",
       initialData: "",
       production: false,
-      chunks: ["react", "flexible", "redux", "reduxSagas", "index"],
+      chunks: [
+        "react",
+        "flexible",
+        "redux",
+        "reduxSagas",
+        "babelPolyfill",
+        "highcharts",
+        "index"
+      ],
       jsname: "name",
       //staticPath: ['style.css'],
       hash: false, //为静态资源生成hash值
@@ -81,7 +91,14 @@ module.exports = {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ["react", "flexible", "redux", "reduxSagas"],
+      names: [
+        "react",
+        "flexible",
+        "redux",
+        "reduxSagas",
+        "babelPolyfill",
+        "highcharts"
+      ],
       minChunks: Infinity
     })
   ],
