@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "nodemon": "nodemon server.js",
-    "webpackdevserver": "webpack-dev-server --hot --inline --progress --colors --port 8868 --config ./webpack.config.js",
+    "dev": " cross-env ENV=develop webpack-dev-server --hot --inline --progress --colors --port 8868 --config ./webpack.config.js",
     "prod": "webpack --config ./webpack.config.prod.js && npm run nodemon"
   },
   "repository": {
@@ -37,6 +37,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "consolidate": "^0.15.1",
+    "cross-env": "^5.2.0",
     "css": "^2.2.4",
     "css-loader": "^0.28.11",
     "ejs": "^2.5.7",

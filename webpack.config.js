@@ -25,10 +25,14 @@ let rewrite = require("express-urlrewrite");
 //     }]
 //   }
 // };
-
+console.log(process.env.ENV);
 module.exports = {
   entry: {
-    demo: ["./src/router/index.js"]
+    react: "react",
+    flexible: ["./js/index.min.js"],
+    redux: "redux",
+    reduxSagas: "redux-saga",
+    index: ["./src/router/index.js"]
   },
   output: {
     // path: path.resolve(__dirname, 'dist'),
@@ -61,7 +65,7 @@ module.exports = {
       htmlContent: "",
       initialData: "",
       production: false,
-      chunks: ["demo"],
+      chunks: ["react", "flexible", "redux", "reduxSagas", "index"],
       jsname: "name",
       //staticPath: ['style.css'],
       hash: false, //为静态资源生成hash值
@@ -75,6 +79,10 @@ module.exports = {
       eslint: {
         configFile: path.join(__dirname, "./.eslintrc.json")
       }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ["react", "flexible", "redux", "reduxSagas"],
+      minChunks: Infinity
     })
   ],
   module: {
