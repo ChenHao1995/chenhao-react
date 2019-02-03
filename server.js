@@ -5,6 +5,7 @@ var consolidate = require("consolidate");
 var open = require("open");
 
 var port = 6868;
+var ENV = process.env.ENV;
 
 app.engine("html", consolidate.ejs);
 app.set("view engine", "html");
@@ -19,6 +20,9 @@ app.use("/app", express.static("./dist"));
 // app.use('/app/index',function(req,res,next){
 //   res.render('index.html')
 // })
+app.use("/ssr/index", function(req, res, next) {
+  res.send("服务端渲染");
+});
 app.use("*", function(req, res, next) {
   res.render("index.html");
 });
@@ -33,7 +37,9 @@ app.listen(port, function(err) {
   if (err) {
     throw err;
   } else {
-    open(`http://127.0.0.1:${port}/app/index`);
+    if (ENV === "develop") {
+      // open(`http://127.0.0.1:${port}/app/index`);
+    }
     console.log(
       `==> 🌎  Listening on ${port}. Open up http://localhost:${port}/ in your browser.`
     );

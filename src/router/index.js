@@ -23,27 +23,32 @@ import createHistory from 'history/createBrowserHistory'
 // import babelPolyfill from 'babel-polyfill'
 import ansycComponent from '../ansycComponent'
 
-render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <div>
-        <Route
-          exact
-          path="/app/index"
-          component={ansycComponent(() => import('../demo.js'))}
-        />
-        <Route
-          exact
-          path="/app/test"
-          component={ansycComponent(() => import('../test.js'))}
-        />
-        <Route
-          exact
-          path="/app/async"
-          component={ansycComponent(() => import('../demo.js'))}
-        />
-      </div>
-    </ConnectedRouter>
-  </Provider>,
-  document.getElementById('root')
-)
+const App = props => {
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <div>
+          <Route
+            exact
+            path="/app/index"
+            component={ansycComponent(() => import('../demo.js'))}
+          />
+          <Route
+            exact
+            path="/app/test"
+            component={ansycComponent(() => import('../test.js'))}
+          />
+          <Route
+            exact
+            path="/app/async"
+            component={ansycComponent(() => import('../demo.js'))}
+          />
+        </div>
+      </ConnectedRouter>
+    </Provider>
+  )
+}
+
+render(<App />, document.getElementById('root'))
+
+export default App
