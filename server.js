@@ -10,6 +10,7 @@ const Webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
 const webpackConfig = require("./webpack.config");
 const webpackDevMiddleware = require("webpack-dev-middleware");
+const webpackHotMiddleware = require("webpack-hot-middleware");
 
 var port = 6868;
 var ENV = process.env.ENV;
@@ -31,6 +32,13 @@ app.use(
     compiler,
     Object.assign({}, webpackConfig.devServer, { publicPath: "/" })
   )
+);
+
+app.use(
+  webpackHotMiddleware(compiler, {
+    log: false,
+    heartbeat: 2000
+  })
 );
 
 //app.use('/',express.static('./'))
