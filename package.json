@@ -8,7 +8,8 @@
     "start": "node server.js",
     "nodemon": " cross-env ENV=develop nodemon server.js",
     "dev": " cross-env ENV=develop webpack-dev-server --hot --inline --progress --colors --port 8868 --config ./webpack.config.js",
-    "prod": "webpack --config ./webpack.config.prod.js && npm run nodemon"
+    "prod": "webpack --config ./webpack.config.prod.js && npm run nodemon",
+    "dev:ssr": "nodemon server.js --exec babel-node"
   },
   "repository": {
     "type": "git",
