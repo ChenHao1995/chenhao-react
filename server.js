@@ -1,14 +1,15 @@
 import React from "react";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
-// import App from "./src/router";
+import Home from "./ssr_page/home";
 var express = require("express");
 var app = express();
 var proxy = require("http-proxy-middleware");
 var consolidate = require("consolidate");
 var open = require("open");
+const fs = require("fs");
 const Webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
-const webpackConfig = require("./webpack.config");
+const webpackConfig = require("./webpack.config.ssr");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");
 
@@ -30,7 +31,11 @@ app.set("views", __dirname + "/dist");
 app.use(
   webpackDevMiddleware(
     compiler,
-    Object.assign({}, webpackConfig.devServer, { publicPath: "/" })
+    Object.assign({}, webpackConfig.devServer, {
+      // publicPath: "/",
+      writeToDisk: true
+      // serverSideRender: true
+    })
   )
 );
 
@@ -46,11 +51,20 @@ app.use(
 app.use("/app", express.static("./dist"));
 //app.use('/', proxy({target: 'http://127.0.0.1:8868/', changeOrigin: true}));
 
-// app.use('/app/index',function(req,res,next){
-//   res.render('index.html')
-// })
 app.use("/ssr/index", function(req, res, next) {
-  res.send("服务端渲染");
+  var htmlstr = fs.readFileSync("./ssr_page/index.html", "utf8");
+  const Component = renderToString(<Home />);
+  console.log(htmlstr);
+  res.send(
+    htmlstr.replace(
+      '<div class="root" id="root"></div>',
+      '<div class="root" id="root">' + Component + "</div>"
+    )
+  );
+});
+
+app.use("/app/index", function(req, res, next) {
+  res.render("index.html");
 });
 app.use("*", function(req, res, next) {
   res.render("index.html");

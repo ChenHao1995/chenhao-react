@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "." + {"0":"f26bec95","1":"09c2ed8f","2":"c23534e2"}[chunkId] + ".min.js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "." + {"0":"539a45a7","1":"cbd7d7f2","2":"c23534e2"}[chunkId] + ".min.js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -10342,6 +10342,10 @@ module.exports = __webpack_require__(201);
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _reactDom = __webpack_require__(202);
 
 var _reactRouterDom = __webpack_require__(213);
@@ -10369,39 +10373,41 @@ var _ansycComponent2 = _interopRequireDefault(_ansycComponent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //Router,hashHistory,
-(0, _reactDom.render)(_react2.default.createElement(
-  _reactRedux.Provider,
-  { store: _store2.default },
-  _react2.default.createElement(
-    _reactRouterRedux.ConnectedRouter,
-    { history: _store.history },
+var App = function App(props) {
+  return _react2.default.createElement(
+    _reactRedux.Provider,
+    { store: _store2.default },
     _react2.default.createElement(
-      'div',
-      null,
-      _react2.default.createElement(_reactRouterDom.Route, {
-        exact: true,
-        path: '/app/index',
-        component: (0, _ansycComponent2.default)(function () {
-          return __webpack_require__.e/* import() */(0/* duplicate */).then(__webpack_require__.bind(null, 199));
+      _reactRouterRedux.ConnectedRouter,
+      { history: _store.history },
+      _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_reactRouterDom.Route, {
+          exact: true,
+          path: '/app/index',
+          component: (0, _ansycComponent2.default)(function () {
+            return __webpack_require__.e/* import() */(0/* duplicate */).then(__webpack_require__.bind(null, 199));
+          })
+        }),
+        _react2.default.createElement(_reactRouterDom.Route, {
+          exact: true,
+          path: '/app/test',
+          component: (0, _ansycComponent2.default)(function () {
+            return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 473));
+          })
+        }),
+        _react2.default.createElement(_reactRouterDom.Route, {
+          exact: true,
+          path: '/app/async',
+          component: (0, _ansycComponent2.default)(function () {
+            return __webpack_require__.e/* import() */(0/* duplicate */).then(__webpack_require__.bind(null, 199));
+          })
         })
-      }),
-      _react2.default.createElement(_reactRouterDom.Route, {
-        exact: true,
-        path: '/app/test',
-        component: (0, _ansycComponent2.default)(function () {
-          return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 473));
-        })
-      }),
-      _react2.default.createElement(_reactRouterDom.Route, {
-        exact: true,
-        path: '/app/async',
-        component: (0, _ansycComponent2.default)(function () {
-          return __webpack_require__.e/* import() */(0/* duplicate */).then(__webpack_require__.bind(null, 199));
-        })
-      })
+      )
     )
-  )
-), document.getElementById('root'));
+  );
+};
 //import createMemoryHistory from 'history/createMemoryHistory'
 //import { browserHistory } from 'react-router'
 //路由
@@ -10415,6 +10421,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //import TestComponent from '../test.js'
 
 //import {Chen} from './demo.js'
+
+
+(0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById('root'));
+
+exports.default = App;
 
 /***/ }),
 /* 202 */

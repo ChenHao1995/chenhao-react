@@ -9,7 +9,8 @@
     "nodemon": " cross-env ENV=develop nodemon server.js",
     "dev": " cross-env ENV=develop webpack-dev-server --hot --inline --progress --colors --port 8868 --config ./webpack.config.js",
     "prod": "webpack --config ./webpack.config.prod.js && npm run nodemon",
-    "dev:ssr": "nodemon server.js --exec babel-node"
+    "dev:ssr": "nodemon server.js --exec babel-node",
+    "dev:nodemon": "nodemon server.js --exec babel-node"
   },
   "repository": {
     "type": "git",
@@ -72,7 +73,8 @@
     "url-loader": "^1.0.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1",
-    "webpack-hot-middleware": "^2.24.3"
+    "webpack-hot-middleware": "^2.24.3",
+    "write-file-webpack-plugin": "^4.5.0"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
