@@ -22,12 +22,14 @@ app.engine("html", consolidate.ejs);
 app.set("view engine", "html");
 //app.set('view engine','css')
 app.set("views", __dirname + "/dist");
+
 // console.log(
 //   webpackDevMiddleware(
 //     compiler,
 //     Object.assign({}, webpackConfig.devServer, { publicPath: "/" })
 //   )
 // );
+
 app.use(
   webpackDevMiddleware(
     compiler,
@@ -50,6 +52,13 @@ app.use(
 //提供静态服务
 app.use("/app", express.static("./dist"));
 //app.use('/', proxy({target: 'http://127.0.0.1:8868/', changeOrigin: true}));
+
+// 为img提供静态服务
+app.use("/img/:name", function(req, res) {
+  var name = req.params.name;
+  var picture = fs.readFileSync(`./img/${name}`);
+  res.send(picture);
+});
 
 app.use("/ssr/index", function(req, res, next) {
   var htmlstr = fs.readFileSync("./ssr_page/index.html", "utf8");
