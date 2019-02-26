@@ -28,13 +28,14 @@ let rewrite = require("express-urlrewrite");
 console.log(process.env.ENV);
 module.exports = {
   entry: {
-    react: "react",
+    // react: "react",
     flexible: ["./js/index.min.js"],
-    redux: "redux",
-    reduxSagas: "redux-saga",
-    babelPolyfill: "babel-polyfill",
+    // redux: "redux",
+    // reduxSagas: "redux-saga",
+    // babelPolyfill: "babel-polyfill",
     highcharts: "highcharts",
-    index: ["./src/router/index.js"]
+    index: ["./src/router/index.js"],
+    vendor: ["react", "redux", "redux-saga", "babel-polyfill"]
   },
   output: {
     // path: path.resolve(__dirname, 'dist'),
@@ -67,24 +68,30 @@ module.exports = {
       htmlContent: "",
       initialData: "",
       production: false,
-      chunks: [
-        "react",
-        "flexible",
-        "redux",
-        "reduxSagas",
-        "babelPolyfill",
-        "highcharts",
-        "index"
-      ],
+      // chunks: [
+      //   // "react",
+      //   "flexible",
+      //   // "redux",
+      //   // "reduxSagas",
+      //   // "babelPolyfill",
+      //   "highcharts",
+      //   // "vendor",
+      //   "manifest",
+      //   // "runtime",
+      //   "vendor",
+      //   "index"
+      // ],
       jsname: "name",
       //staticPath: ['style.css'],
-      hash: false, //为静态资源生成hash值
+      // hash: false, //为静态资源生成hash值
       minify: {
         //压缩HTML文件
         removeComments: false, //移除HTML中的注释
         collapseWhitespace: false //删除空白符与换行符
       }
     }),
+    // new webpack.HashedModuleIdsPlugin(),
+    // new webpack.NamedModulesPlugin(),
     new webpack.LoaderOptionsPlugin({
       eslint: {
         configFile: path.join(__dirname, "./.eslintrc.json")
@@ -92,15 +99,22 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       names: [
-        "react",
+        // "react",
         "flexible",
-        "redux",
-        "reduxSagas",
-        "babelPolyfill",
-        "highcharts"
+        // "redux",
+        // "reduxSagas",
+        // "babelPolyfill",
+        "highcharts",
+        "vendor"
       ],
       minChunks: Infinity
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "manifest"
     })
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: "runtime"
+    // })
   ],
   module: {
     rules: [
