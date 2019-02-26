@@ -72,9 +72,9 @@ app.use("/ssr/index", function(req, res, next) {
   );
 });
 
-app.use("/app/index", function(req, res, next) {
-  res.render("index.html");
-});
+// app.use("/app/index", function(req, res, next) {
+//   res.render("index.html");
+// });
 app.use("*", function(req, res, next) {
   res.render("index.html");
 });

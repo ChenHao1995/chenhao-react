@@ -26,12 +26,22 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 // };
 
 module.exports = {
+  // entry: {
+  //   index: ["./src/router/index.js"]
+  // },
   entry: {
-    demo: ["./src/router/index.js"]
+    // react: "react",
+    flexible: ["./js/index.min.js"],
+    // redux: "redux",
+    // reduxSagas: "redux-saga",
+    // babelPolyfill: "babel-polyfill",
+    highcharts: "highcharts",
+    index: ["./src/router/index.js"],
+    vendor: ["react", "redux", "redux-saga", "babel-polyfill"]
   },
   output: {
     path: __dirname + "/dist",
-    filename: "[name].[chunkhash:8].js",
+    filename: "[name].[chunkhash].js",
     chunkFilename: "[name].[chunkhash:8].min.js"
     //publicPath: "/"
   },
@@ -60,7 +70,7 @@ module.exports = {
       htmlContent: "",
       initialData: "",
       production: false,
-      chunks: ["demo"],
+      // chunks: ["index"],
       jsname: "name",
       staticPath: ["style.css"],
       hash: false, //为静态资源生成hash值
@@ -69,6 +79,25 @@ module.exports = {
         removeComments: false, //移除HTML中的注释
         collapseWhitespace: false //删除空白符与换行符
       }
+    }),
+
+    // 保证vendor的hash不会每次打包都变化
+    new webpack.HashedModuleIdsPlugin(),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      names: [
+        // "react",
+        "flexible",
+        // "redux",
+        // "reduxSagas",
+        // "babelPolyfill",
+        "highcharts",
+        "vendor"
+      ],
+      minChunks: Infinity
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "manifest"
     })
   ],
   module: {
