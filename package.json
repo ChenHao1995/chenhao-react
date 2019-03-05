@@ -75,6 +75,7 @@
     "redux": "^3.7.2",
     "redux-saga": "^0.16.2",
     "style-loader": "^0.20.3",
+    "typescript": "^3.3.3333",
     "url-loader": "^1.0.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1",
