@@ -10,15 +10,16 @@ import { connect } from 'react-redux'
 //import democss from '../css/demo.css'
 import flexible from '../js/index.min.js'
 import { bindActionCreators } from 'redux'
-import Highcharts from 'highcharts/highstock'
-import HighchartsMore from 'highcharts/highcharts-more'
-import HighchartsDrilldown from 'highcharts/modules/drilldown'
-import Highcharts3D from 'highcharts/highcharts-3d'
+// import Highcharts from 'highcharts/highstock'
+// import HighchartsMore from 'highcharts/highcharts-more'
+// import HighchartsDrilldown from 'highcharts/modules/drilldown'
+// import Highcharts3D from 'highcharts/highcharts-3d'
 import { routerActions } from 'react-router-redux'
 //import ScoreStart from './Component/scoreToStart.js'
-HighchartsMore(Highcharts)
-HighchartsDrilldown(Highcharts)
-Highcharts3D(Highcharts)
+
+// HighchartsMore(Highcharts)
+// HighchartsDrilldown(Highcharts)
+// Highcharts3D(Highcharts)
 
 //import * as Highcharts from 'highcharts'
 // import * as Exporting from 'highcharts/modules/exporting'
@@ -49,12 +50,11 @@ export default class Test extends Component {
     //this.props.routerActions.push('/chen')
   }
   componentDidMount() {
-    console.log(
-      import('./Component/scoreToStart.js').then(function(data) {
-        console.log(data)
-      })
-    )
-
+    // console.log(
+    //   import('./Component/scoreToStart.js').then(function(data) {
+    //     console.log(data)
+    //   })
+    // )
     // var options = {
     //   chart: {
     //     type: 'column',
@@ -86,28 +86,28 @@ export default class Test extends Component {
   }
 
   render() {
-    const dataArray = [
-      {
-        stsTitle: '语言',
-        stsDetail: '描述性文字1'
-      },
-      {
-        stsTitle: '文字',
-        stsDetail: '描述性文字2'
-      },
-      {
-        stsTitle: '声音',
-        stsDetail: '描述性文字3'
-      },
-      {
-        stsTitle: '速度',
-        stsDetail: '描述性文字4'
-      },
-      {
-        stsTitle: '想不出了',
-        stsDetail: '描述性文字5'
-      }
-    ]
+    // const dataArray = [
+    //   {
+    //     stsTitle: '语言',
+    //     stsDetail: '描述性文字1'
+    //   },
+    //   {
+    //     stsTitle: '文字',
+    //     stsDetail: '描述性文字2'
+    //   },
+    //   {
+    //     stsTitle: '声音',
+    //     stsDetail: '描述性文字3'
+    //   },
+    //   {
+    //     stsTitle: '速度',
+    //     stsDetail: '描述性文字4'
+    //   },
+    //   {
+    //     stsTitle: '想不出了',
+    //     stsDetail: '描述性文字5'
+    //   }
+    // ]
     const props = this.props
     return (
       <div>

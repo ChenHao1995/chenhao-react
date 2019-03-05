@@ -25,7 +25,7 @@ let rewrite = require("express-urlrewrite");
 //     }]
 //   }
 // };
-console.log(process.env.ENV);
+// console.log(process.env.ENV);
 module.exports = {
   entry: {
     // react: "react",
@@ -35,7 +35,18 @@ module.exports = {
     // babelPolyfill: "babel-polyfill",
     highcharts: "highcharts",
     index: ["./src/router/index.js"],
-    vendor: ["react", "redux", "redux-saga", "babel-polyfill"]
+    vendor: [
+      "react",
+      "redux",
+      "redux-saga",
+      "babel-polyfill",
+      "immutable",
+      "react-router-redux",
+      "react-dom",
+      "react-router-dom",
+      "react-redux",
+      "history"
+    ]
   },
   output: {
     // path: path.resolve(__dirname, 'dist'),
