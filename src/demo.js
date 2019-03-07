@@ -135,7 +135,7 @@ export default class Demo extends Component {
     const { routerActions } = this.props
     //console.log(routerActions.go)
     routerActions.push('/app/test')
-    console.log(push)
+    // console.log(push)
     //store.dispatch(push('/test'))
   };
 

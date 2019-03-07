@@ -1,5 +1,5 @@
 import { render } from 'react-dom'
-import { Route, BrowserRouter, Switch, browserHistory } from 'react-router-dom' //Router,hashHistory,
+import { Route } from 'react-router-dom' //Router,hashHistory, // BrowserRouter, Switch, browserHistory
 import React from 'react'
 //import {Chen} from './demo.js'
 import { Provider } from 'react-redux'

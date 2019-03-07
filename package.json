@@ -25,7 +25,9 @@
   },
   "homepage": "https://github.com/ChenHao1995/chenhao-react#readme",
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-decorators": "^7.3.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
@@ -53,6 +55,7 @@
     "cross-env": "^5.2.0",
     "css": "^2.2.4",
     "css-loader": "^0.28.11",
+    "document": "^0.4.7",
     "ejs": "^2.5.7",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
@@ -88,6 +91,7 @@
     "webpack-dev-server": "^2.11.1",
     "webpack-hot-middleware": "^2.24.3",
     "webpack-node-externals": "^1.7.2",
+    "window": "^4.2.6",
     "write-file-webpack-plugin": "^4.5.0"
   },
   "dependencies": {

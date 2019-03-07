@@ -8,7 +8,9 @@ import {
   routerMiddleware
 } from 'react-router-redux'
 //import { history } from './router'
-import createHistory from 'history/createBrowserHistory'
+import createHistory, {
+  createMemoryHistory
+} from 'history/createBrowserHistory'
 import createSagaMiddleware from 'redux-saga'
 import sagas from '../sagas'
 let initState = {
@@ -23,8 +25,6 @@ const history = createHistory()
 const middleware = routerMiddleware(history)
 const sagaMiddleware = createSagaMiddleware()
 
-export { history }
-
 const rootReducer = combineReducers({
   ...Reducer,
   routing: routerReducer
@@ -35,4 +35,6 @@ const store = createStore(
   applyMiddleware(sagaMiddleware, middleware)
 )
 sagaMiddleware.run(sagas)
+
 export default store
+export { history }

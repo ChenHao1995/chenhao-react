@@ -1,6 +1,8 @@
 import React from "react";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
 import Home from "./ssr_page/home";
+// import Index from "./src/router/index_ssr";
+
 var express = require("express");
 var app = express();
 var proxy = require("http-proxy-middleware");
@@ -15,8 +17,8 @@ const webpackHotMiddleware = require("webpack-hot-middleware");
 
 var port = 6868;
 var ENV = process.env.ENV;
-const compiler = Webpack(webpackConfig);
-const server = new WebpackDevServer(compiler, webpackConfig.devServer);
+// const compiler = Webpack(webpackConfig);
+// const server = new WebpackDevServer(compiler, webpackConfig.devServer);
 
 app.engine("html", consolidate.ejs);
 app.set("view engine", "html");
@@ -30,23 +32,23 @@ app.set("views", __dirname + "/dist");
 //   )
 // );
 
-app.use(
-  webpackDevMiddleware(
-    compiler,
-    Object.assign({}, webpackConfig.devServer, {
-      // publicPath: "/",
-      writeToDisk: true
-      // serverSideRender: true
-    })
-  )
-);
+// app.use(
+//   webpackDevMiddleware(
+//     compiler,
+//     Object.assign({}, webpackConfig.devServer, {
+//       // publicPath: "/",
+//       writeToDisk: true
+//       // serverSideRender: true
+//     })
+//   )
+// );
 
-app.use(
-  webpackHotMiddleware(compiler, {
-    log: false,
-    heartbeat: 2000
-  })
-);
+// app.use(
+//   webpackHotMiddleware(compiler, {
+//     log: false,
+//     heartbeat: 2000
+//   })
+// );
 
 //app.use('/',express.static('./'))
 //提供静态服务
@@ -60,10 +62,13 @@ app.use("/img/:name", function(req, res) {
   res.send(picture);
 });
 
-app.use("/ssr/index", function(req, res, next) {
+app.use("/ssr/test", function(req, res, next) {
+  var Index = require("./src/router/index_ssr").default;
   var htmlstr = fs.readFileSync("./ssr_page/index.html", "utf8");
-  const Component = renderToString(<Home />);
-  console.log(htmlstr);
+  console.log(Index);
+  const Component = renderToString(<Index />);
+  console.log("---------");
+  console.log(Component);
   res.send(
     htmlstr.replace(
       '<div class="root" id="root"></div>',

@@ -8,13 +8,13 @@ import { PropTypes } from 'prop-types'
 import Actions from './actions'
 import { connect } from 'react-redux'
 //import democss from '../css/demo.css'
-import flexible from '../js/index.min.js'
+// import flexible from '../js/index.min.js'
 import { bindActionCreators } from 'redux'
 // import Highcharts from 'highcharts/highstock'
 // import HighchartsMore from 'highcharts/highcharts-more'
 // import HighchartsDrilldown from 'highcharts/modules/drilldown'
 // import Highcharts3D from 'highcharts/highcharts-3d'
-import { routerActions } from 'react-router-redux'
+// import { routerActions } from 'react-router-redux'
 //import ScoreStart from './Component/scoreToStart.js'
 
 // HighchartsMore(Highcharts)
@@ -35,8 +35,8 @@ function mapStateToProps(state) {
 // }
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Actions, dispatch),
-    routerActions: bindActionCreators(routerActions, dispatch)
+    actions: bindActionCreators(Actions, dispatch)
+    // routerActions: bindActionCreators(routerActions, dispatch)
   }
 }
 @connect(
@@ -112,12 +112,12 @@ export default class Test extends Component {
     return (
       <div>
         <div id="map" style={{ width: 800, height: 500 }}>
-          这是一个test
+          这是一个test 用来测试服务端渲染
         </div>
         <div id="container" style={{ width: 800, height: 500 }} />
         <button
           onClick={() => {
-            props.routerActions.goBack()
+            // props.routerActions.goBack()
           }}
         >
           back
@@ -133,7 +133,7 @@ export default class Test extends Component {
 }
 
 Test.propTypes = {
-  routerActions: PropTypes.any
+  // routerActions: PropTypes.any
 }
 // const TestComponent = connect(
 //   mapStateToProps,
