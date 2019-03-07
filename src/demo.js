@@ -16,6 +16,7 @@ import Total from './Component/totalPoints.js'
 import { bindActionCreators } from 'redux'
 import { routerActions, push } from 'react-router-redux'
 import createClass from 'create-react-class'
+import 'antd-mobile/dist/antd-mobile.css'
 //import Api from '../api'
 
 function mapStateToProps(state) {

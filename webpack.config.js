@@ -143,9 +143,11 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
+            babelrc: false,
             presets: [
+              // "@babel/env",
               [
-                "env",
+                "@babel/env",
                 {
                   targets: {
                     browsers: [
@@ -158,23 +160,27 @@ module.exports = {
                     ]
                   },
                   // debug: true,
-                  useBuiltIns: true
+                  useBuiltIns: false
                 }
               ],
-              "react",
-              "stage-0"
+              "@babel/preset-react"
+              // "@babel/stage-0"
             ],
             plugins: [
-              "transform-decorators-legacy",
-              [
-                "import",
-                [
-                  {
-                    libraryName: "antd-mobile",
-                    style: true
-                  }
-                ]
-              ]
+              // decoratorsBeforeExport: true,
+              ["@babel/plugin-proposal-decorators", { legacy: true }],
+
+              ["@babel/plugin-proposal-class-properties", { loose: true }],
+              // [
+              //   "import",
+              //   {
+              //     libraryName: "antd-mobile",
+              //     style: true
+              //   }
+              // ],
+              ["@babel/plugin-syntax-dynamic-import"]
+
+              // ["@babel/plugin-transform-destructuring", { useBuiltIns: false }],
             ]
           }
         },
