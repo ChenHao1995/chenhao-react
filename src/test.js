@@ -17,6 +17,8 @@ import { bindActionCreators } from 'redux'
 // import { routerActions } from 'react-router-redux'
 //import ScoreStart from './Component/scoreToStart.js'
 
+import { render } from 'react-dom'
+
 // HighchartsMore(Highcharts)
 // HighchartsDrilldown(Highcharts)
 // Highcharts3D(Highcharts)
@@ -118,9 +120,10 @@ export default class Test extends Component {
         <button
           onClick={() => {
             // props.routerActions.goBack()
+            alert('haha')
           }}
         >
-          back
+          back click
         </button>
         {/*
           dataArray.map(function(value,index,array){

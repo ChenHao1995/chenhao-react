@@ -50,9 +50,9 @@ app.set("views", __dirname + "/dist");
 //   })
 // );
 
-//app.use('/',express.static('./'))
+app.use("/", express.static("./"));
 //提供静态服务
-app.use("/app", express.static("./dist"));
+// app.use("/app", express.static("./dist"));
 //app.use('/', proxy({target: 'http://127.0.0.1:8868/', changeOrigin: true}));
 
 // 为img提供静态服务
@@ -64,9 +64,9 @@ app.use("/img/:name", function(req, res) {
 
 app.use("/ssr/test", function(req, res, next) {
   var Index = require("./src/router/index_ssr").default;
-  var htmlstr = fs.readFileSync("./ssr_page/index.html", "utf8");
+  var htmlstr = fs.readFileSync("./ssr_js/index.html", "utf8");
   console.log(Index);
-  const Component = renderToString(<Index />);
+  const Component = renderToStaticMarkup(<Home />);
   console.log("---------");
   console.log(Component);
   res.send(

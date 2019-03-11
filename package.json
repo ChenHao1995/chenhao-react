@@ -12,7 +12,8 @@
     "dev:ssr": "babel-node server.js",
     "dev:nodemon": "nodemon server.js --exec babel-node",
     "bulid:server": "webpack --config ./webpack.config.server.js",
-    "scripts:auto": "node scripts/auto.js"
+    "scripts:auto": "node scripts/auto.js",
+    "bulid:ssr": "webpack --config ./webpack.config.ssr.js"
   },
   "repository": {
     "type": "git",
