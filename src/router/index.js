@@ -43,6 +43,11 @@ const App = props => {
             path="/app/async"
             component={ansycComponent(() => import('../demo.js'))}
           />
+          <Route
+            exact
+            path="/app/drop"
+            component={ansycComponent(() => import('../dropTable.tsx'))}
+          />
         </div>
       </ConnectedRouter>
     </Provider>

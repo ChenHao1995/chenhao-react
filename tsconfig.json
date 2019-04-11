@@ -2,14 +2,15 @@
   "compilerOptions": {
     "outDir": "./tscBuild",
     "allowJs": true,
-    "target": "es5"
+    "target": "es5",
     // "module": "system",
-    // "noImplicitAny": true,
+    "noImplicitAny": true,
     // "removeComments": true,
     // "preserveConstEnums": true,
     // "outFile": "../../built/local/tsc.js",
     // "sourceMap": true
+    "jsx": "react"
   },
-  "include": ["./ts/**/*"],
+  "include": ["./*/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

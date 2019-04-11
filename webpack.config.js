@@ -130,6 +130,12 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.ts$|\.tsx?$/,
+        loader: "ts-loader",
+        // include: path.join(__dirname, "./src"),
+        exclude: [/ts/, /tscBuild/]
+      },
+      {
         enforce: "pre",
         test: /\.js$|\.jsx$/,
         loader: "eslint-loader",
@@ -139,7 +145,7 @@ module.exports = {
         exclude: [/node_modules/, /assets/]
       },
       {
-        test: /\.js$|\.jsx$/,
+        test: /\.ts$|\.tsx$|\.js$|\.jsx$/,
         use: {
           loader: "babel-loader",
           options: {
@@ -171,6 +177,10 @@ module.exports = {
                 [
                   {
                     libraryName: "antd-mobile",
+                    style: true
+                  },
+                  {
+                    libraryName: "antd",
                     style: true
                   }
                 ]
@@ -259,6 +269,6 @@ module.exports = {
   //   configFile: path.join(__dirname, './.eslintrc.json')
   // },
   resolve: {
-    extensions: [".web.js", ".js", ".jsx", ".less", ".css"]
+    extensions: [".web.js", ".js", ".jsx", ".less", ".css", ".ts", ".tsx"]
   }
 };
