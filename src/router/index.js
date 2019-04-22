@@ -48,6 +48,11 @@ const App = props => {
             path="/app/drop"
             component={ansycComponent(() => import('../dropTable.tsx'))}
           />
+          <Route
+            exact
+            path="/app/signature"
+            component={ansycComponent(() => import('../signature'))}
+          />
         </div>
       </ConnectedRouter>
     </Provider>
