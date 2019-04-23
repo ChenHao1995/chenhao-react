@@ -10,6 +10,17 @@ export default class Signature extends Component {
   constructor(props) {
     super(props)
   }
+  dataURLtoBlob = dataurl => {
+    var arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n)
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n)
+    }
+    return new Blob([u8arr], { type: mime })
+  }
 
   componentDidMount() {
     console.log(this.drawing)
@@ -25,21 +36,21 @@ export default class Signature extends Component {
   }
   drawCircular = (x, y) => {
     if (this.state.mouseDown) {
+      // 画园
       let offsetLeft = this.drawing.offsetLeft
       let offsetTop = this.drawing.offsetTop
       this.context = this.drawing.getContext('2d')
       this.context.beginPath()
-      this.context.arc(x - offsetLeft, y - offsetTop, 1, 0, 2 * Math.PI, false)
+      this.context.arc(x - offsetLeft, y - offsetTop, 2, 0, 2 * Math.PI, false)
       this.context.fillStyle = 'red'
       this.context.strokeStyle = 'red'
       this.context.fill()
-      // this.context.stroke()
-
+      // 连线
       this.context.beginPath()
       this.context.moveTo(this.lastX, this.lastY)
       this.context.lineTo(x - offsetLeft, y - offsetTop)
       this.context.strokeStyle = 'red'
-      this.context.lineWidth = 2
+      this.context.lineWidth = 4
       this.context.lineCap = 'round'
       this.context.stroke()
 
@@ -96,7 +107,16 @@ export default class Signature extends Component {
         <button
           onClick={() => {
             const url = this.drawing.toDataURL('image/png')
-            console.log(url)
+            const blob = this.dataURLtoBlob(url)
+            const file = new File([blob], 'pic.png')
+            console.log(file)
+            var reader = new FileReader()
+            reader.onload = function() {
+              const img = document.createElement('img')
+              img.src = reader.result
+              document.body.appendChild(img)
+            }
+            reader.readAsDataURL(file)
           }}
         >
           export
