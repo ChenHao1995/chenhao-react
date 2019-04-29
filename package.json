@@ -13,7 +13,10 @@
     "dev:nodemon": "nodemon server.js --exec babel-node",
     "bulid:server": "webpack --config ./webpack.config.server.js",
     "scripts:auto": "node scripts/auto.js",
-    "precommit": "eslint src/router/index.js"
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.js": "eslint"
   },
   "repository": {
     "type": "git",
@@ -69,6 +72,7 @@
     "js": "^0.1.0",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
+    "lint-staged": "^8.1.5",
     "nodemon": "^1.14.11",
     "open": "0.0.5",
     "react": "^16.2.0",
