@@ -30,7 +30,7 @@ export default class ScoreToStart extends Component {
     this.exchangeValue = this.exchangeValue.bind(this)
     this.getStart = this.getStart.bind(this)
   }
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     const propkey = this.props.propkey
     this.props.actions.scoreToStartInitValue({
       [propkey]: {
