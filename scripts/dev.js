@@ -15,6 +15,13 @@ var clearConsole = require('react-dev-utils/clearConsole')
 const isInteractive = process.stdout.isTTY
 var port = 8848
 var ENV = process.env.ENV
+
+// 自动刷新
+webpackConfig.entry.index.unshift(
+  'webpack-dev-server/client?http://127.0.0.1:8848/',
+  'webpack/hot/dev-server'
+)
+
 const compiler = Webpack(webpackConfig)
 const server = new WebpackDevServer(compiler, webpackConfig.devServer)
 
@@ -30,6 +37,7 @@ server.listen(port, '127.0.0.1', err => {
   }
   clearConsole()
   console.log(chalk.green('Compiling......'))
+  open(`http://127.0.0.1:${port}/app/index`)
 
   // console.log(chalk.cyan('Starting the development server...\n'))
 })
