@@ -75,6 +75,7 @@
     "lint-staged": "^8.1.5",
     "nodemon": "^1.14.11",
     "open": "0.0.5",
+    "open-browser-webpack-plugin": "0.0.5",
     "react": "^16.2.0",
     "react-dev-utils": "^8.0.0",
     "react-dnd": "^7.4.5",

@@ -1,5 +1,11 @@
 import { render } from 'react-dom'
-import { Route, BrowserRouter, Switch, browserHistory } from 'react-router-dom' //Router,hashHistory,
+import {
+  Route,
+  BrowserRouter,
+  Switch,
+  browserHistory,
+  Redirect
+} from 'react-router-dom' //Router,hashHistory,
 import React from 'react'
 //import {Chen} from './demo.js'
 import { Provider } from 'react-redux'
@@ -21,7 +27,44 @@ import createHistory from 'history/createBrowserHistory'
 //history.listen(location => analyticsService.track(location.pathname))
 //const history = createHistory()
 // import babelPolyfill from 'babel-polyfill'
+import { PropTypes } from 'prop-types'
 import ansycComponent from '../ansycComponent'
+
+const isLogin = true
+function WrapRoute(props) {
+  return isLogin ? (
+    <Route {...props} />
+  ) : (
+    <Redirect
+      to={{
+        pathname: '/app/index'
+      }}
+    />
+  )
+}
+
+function WrapRoute2(props) {
+  const { component: Component, ...rest } = props
+  return (
+    <Route
+      {...rest}
+      render={props => {
+        return isLogin ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/app/index'
+            }}
+          />
+        )
+      }}
+    />
+  )
+}
+WrapRoute2.propTypes = {
+  component: PropTypes.object
+}
 
 const App = props => {
   return (
@@ -33,22 +76,17 @@ const App = props => {
             path="/app/index"
             component={ansycComponent(() => import('../demo.js'))}
           />
-          <Route
+          <WrapRoute
             exact
             path="/app/test"
             component={ansycComponent(() => import('../test.js'))}
           />
-          <Route
-            exact
-            path="/app/async"
-            component={ansycComponent(() => import('../demo.js'))}
-          />
-          <Route
+          <WrapRoute
             exact
             path="/app/drop"
             component={ansycComponent(() => import('../dropTable.tsx'))}
           />
-          <Route
+          <WrapRoute
             exact
             path="/app/signature"
             component={ansycComponent(() => import('../signature'))}

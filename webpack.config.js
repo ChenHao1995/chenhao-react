@@ -2,6 +2,7 @@ var webpack = require('webpack')
 var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var OpenBrowserPlugin = require('open-browser-webpack-plugin')
 let rewrite = require('express-urlrewrite')
 
 // module.exports = {
@@ -124,10 +125,11 @@ module.exports = {
       name: 'manifest'
     }),
     // node 调用devserver 这个必须有
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: "runtime"
     // })
+    new OpenBrowserPlugin({ url: 'http://localhost:8868/app/index' })
   ],
   module: {
     rules: [
