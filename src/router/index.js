@@ -62,9 +62,9 @@ function WrapRoute2(props) {
     />
   )
 }
-WrapRoute2.propTypes = {
-  component: PropTypes.object
-}
+// WrapRoute2.propTypes = {
+//   component: PropTypes.object
+// }
 
 const App = props => {
   return (
