@@ -91,6 +91,11 @@ const App = props => {
             path="/app/signature"
             component={ansycComponent(() => import('../signature'))}
           />
+          <WrapRoute
+            exact
+            path="/app/exceldispose"
+            component={ansycComponent(() => import('../view/ExcelDispose'))}
+          />
         </div>
       </ConnectedRouter>
     </Provider>
