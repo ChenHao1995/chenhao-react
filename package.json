@@ -102,6 +102,9 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "history": "^4.7.2",
+    "node-xlsx": "^0.15.0",
+    "pdf-text-extract": "^1.5.0",
+    "pdf-textstring": "0.0.7",
     "prop-types": "^15.6.1"
   }
 }
