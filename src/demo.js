@@ -10,13 +10,13 @@ import { connect } from 'react-redux'
 import democss from '../css/demo.css'
 import flexible from '../js/index.min.js'
 //import  antdstyle  from '../node_modules/antd-mobile/dist/antd-mobile.css';
-import { Switch } from 'antd-mobile'
+import { Switch, InputNumber } from 'antd'
 import Total from './Component/totalPoints.js'
 //import ScoreStart from './Component/scoreToStart.js'
 import { bindActionCreators } from 'redux'
 import { routerActions, push } from 'react-router-redux'
 import createClass from 'create-react-class'
-import 'antd-mobile/dist/antd-mobile.css'
+import 'antd/dist/antd.css'
 //import Api from '../api'
 
 function mapStateToProps(state) {
@@ -75,7 +75,7 @@ export default class Demo extends Component {
         resolve(result.default)
       })
     })
-  };
+  }
 
   remarkChange(value) {
     this.props.actions.remark({
@@ -137,7 +137,7 @@ export default class Demo extends Component {
     routerActions.push('/app/test')
     // console.log(push)
     //store.dispatch(push('/test'))
-  };
+  }
 
   render() {
     const ScoreStart = this.state.ScoreStart
@@ -212,6 +212,7 @@ export default class Demo extends Component {
         >
           提交
         </button>
+        <InputNumber />
 
         <button onClick={this.onhref}>跳转</button>
         {this.props.children}

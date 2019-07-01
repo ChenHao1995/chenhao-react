@@ -1,8 +1,8 @@
-var webpack = require("webpack");
-var path = require("path");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-let rewrite = require("express-urlrewrite");
+var webpack = require('webpack')
+var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+let rewrite = require('express-urlrewrite')
 
 // module.exports = {
 //   entry: './src/demo.js',
@@ -29,31 +29,31 @@ let rewrite = require("express-urlrewrite");
 module.exports = {
   entry: {
     // react: "react",
-    flexible: ["./js/index.min.js"],
+    flexible: ['./js/index.min.js'],
     // redux: "redux",
     // reduxSagas: "redux-saga",
     // babelPolyfill: "babel-polyfill",
-    highcharts: "highcharts",
-    index: ["./src/router/index.js"],
+    highcharts: 'highcharts',
+    index: ['./src/router/index.js'],
     vendor: [
-      "react",
-      "redux",
-      "redux-saga",
-      "babel-polyfill",
-      "immutable",
-      "react-router-redux",
-      "react-dom",
-      "react-router-dom",
-      "react-redux",
-      "history"
+      'react',
+      'redux',
+      'redux-saga',
+      'babel-polyfill',
+      'immutable',
+      'react-router-redux',
+      'react-dom',
+      'react-router-dom',
+      'react-redux',
+      'history'
     ]
   },
   output: {
     // path: path.resolve(__dirname, 'dist'),
-    path: __dirname + "/dist",
-    filename: "[name].[hash].js",
-    chunkFilename: "[name].[chunkhash:8].min.js",
-    publicPath: "/"
+    path: __dirname + '/dist',
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[chunkhash:8].min.js',
+    publicPath: '/'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -65,19 +65,19 @@ module.exports = {
     }),
     new ExtractTextPlugin({
       filename: function(getPath) {
-        return "css/style.css";
+        return 'css/style.css'
       },
       disable: false,
       allChunks: true
     }),
     new HtmlWebpackPlugin({
       //favicon:path.join(__dirname,'../src/favicon.ico'),
-      title: "React",
-      template: path.join(__dirname, "./index.html"),
-      filename: "index.html",
-      inject: "body",
-      htmlContent: "",
-      initialData: "",
+      title: 'React',
+      template: path.join(__dirname, './index.html'),
+      filename: 'index.html',
+      inject: 'body',
+      htmlContent: '',
+      initialData: '',
       production: false,
       // chunks: [
       //   // "react",
@@ -92,7 +92,7 @@ module.exports = {
       //   "vendor",
       //   "index"
       // ],
-      jsname: "name",
+      jsname: 'name',
       //staticPath: ['style.css'],
       // hash: false, //为静态资源生成hash值
       minify: {
@@ -105,23 +105,23 @@ module.exports = {
     // new webpack.NamedModulesPlugin(),
     new webpack.LoaderOptionsPlugin({
       eslint: {
-        configFile: path.join(__dirname, "./.eslintrc.json")
+        configFile: path.join(__dirname, './.eslintrc.json')
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
       names: [
         // "react",
-        "flexible",
+        'flexible',
         // "redux",
         // "reduxSagas",
         // "babelPolyfill",
-        "highcharts",
-        "vendor"
+        'highcharts',
+        'vendor'
       ],
       minChunks: Infinity
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: "manifest"
+      name: 'manifest'
     })
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: "runtime"
@@ -130,69 +130,72 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$|\.jsx$/,
-        loader: "eslint-loader",
+        loader: 'eslint-loader',
         options: {
           fix: true
         },
         exclude: [/node_modules/, /assets/]
       },
       {
-        test: /\.js$|\.jsx$/,
+        test: /\.js$|\.jsx$|\.ts$|\.tsx$/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
+            cacheDirectory: false,
             babelrc: false,
             presets: [
               // "@babel/env",
               [
-                "@babel/env",
+                '@babel/env',
                 {
                   targets: {
                     browsers: [
-                      "last 2 versions",
-                      "Firefox ESR",
-                      "> 1%",
-                      "ie >= 9",
-                      "iOS >= 8",
-                      "Android >= 4"
+                      'last 2 versions',
+                      'Firefox ESR',
+                      '> 1%',
+                      'ie >= 9',
+                      'iOS >= 8',
+                      'Android >= 4'
                     ]
                   },
                   // debug: true,
                   useBuiltIns: false
                 }
               ],
-              "@babel/preset-react"
+              '@babel/preset-react'
               // "@babel/stage-0"
             ],
             plugins: [
               // decoratorsBeforeExport: true,
-              ["@babel/plugin-proposal-decorators", { legacy: true }],
+              ['@babel/plugin-proposal-decorators', { legacy: true }],
 
-              ["@babel/plugin-proposal-class-properties", { loose: true }],
+              ['@babel/plugin-proposal-class-properties', { loose: true }],
               // [
-              //   "import",
+              //   require.resolve('babel-plugin-import'),
               //   {
-              //     libraryName: "antd-mobile",
-              //     style: true
+              //     libraryName: 'antd',
+              //     style: true,
+              //     libraryDirectory: 'lib'
               //   }
               // ],
-              ["@babel/plugin-syntax-dynamic-import"]
+              ['@babel/plugin-syntax-dynamic-import']
 
               // ["@babel/plugin-transform-destructuring", { useBuiltIns: false }],
             ]
           }
         },
-        include: path.join(__dirname, "./src"),
-        exclude: /node_modules/
+        // include: path.join(__dirname, './src')
+        include: [path.join(__dirname, './src')]
+        // exclude: /node_modules/
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
+          fallback: 'style-loader',
           use: {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               sourceMap: true
             }
@@ -202,35 +205,35 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 10000,
-            name: "images/[hash:8].[name].[ext]"
+            name: 'images/[hash:8].[name].[ext]'
           }
         }
       },
       {
         test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 10000,
-            name: "fonts/[hash:8].[name].[ext]"
+            name: 'fonts/[hash:8].[name].[ext]'
           }
         }
       },
       {
         test: /\.less$/,
-        loader: "style-loader!css-loader!less-loader"
+        loader: 'style-loader!css-loader!less-loader'
       }
     ]
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   devServer: {
     //在公共路径下引入资源的路径
     //contentBase: '/',
     hot: true,
-    host: "127.0.0.1",
+    host: '127.0.0.1',
     historyApiFallback: true,
     //压缩
     compress: true
@@ -265,6 +268,6 @@ module.exports = {
   //   configFile: path.join(__dirname, './.eslintrc.json')
   // },
   resolve: {
-    extensions: [".web.js", ".js", ".jsx", ".less", ".css"]
+    extensions: ['.web.js', '.js', '.jsx', '.less', '.css']
   }
-};
+}
