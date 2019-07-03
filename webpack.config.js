@@ -66,7 +66,7 @@ module.exports = {
     }),
     new ExtractTextPlugin({
       filename: function(getPath) {
-        return 'css/style.css'
+        return 'css/style.css';
       },
       disable: false,
       allChunks: true
@@ -238,7 +238,7 @@ module.exports = {
     //在公共路径下引入资源的路径
     //contentBase: '/',
     hot: true,
-    host: '127.0.0.1',
+    host: '0.0.0.0',
     historyApiFallback: true,
     //压缩
     compress: true
