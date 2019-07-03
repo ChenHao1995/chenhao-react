@@ -96,6 +96,11 @@ const App = props => {
             path="/app/exceldispose"
             component={ansycComponent(() => import('../view/ExcelDispose'))}
           />
+          <WrapRoute
+            exact
+            path="/app/indexdb"
+            component={ansycComponent(() => import('../view/IndexDB'))}
+          />
         </div>
       </ConnectedRouter>
     </Provider>
