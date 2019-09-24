@@ -1,5 +1,6 @@
 //import { Provider } from 'react-redux'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 //import  reducer  from './reducer.js'
 import Reducer from '../reducer'
 import {
@@ -32,7 +33,7 @@ const rootReducer = combineReducers({
 const store = createStore(
   rootReducer,
   initState,
-  applyMiddleware(sagaMiddleware, middleware)
+  applyMiddleware(sagaMiddleware, middleware,thunk)
 )
 sagaMiddleware.run(sagas)
 export default store

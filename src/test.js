@@ -15,6 +15,8 @@ import { bindActionCreators } from 'redux'
 // import HighchartsDrilldown from 'highcharts/modules/drilldown'
 // import Highcharts3D from 'highcharts/highcharts-3d'
 import { routerActions } from 'react-router-redux'
+import axios from 'axios'
+
 //import ScoreStart from './Component/scoreToStart.js'
 
 // HighchartsMore(Highcharts)
@@ -48,6 +50,14 @@ export default class Test extends Component {
     super(props)
     console.log(props)
     //this.props.routerActions.push('/chen')
+  }
+
+  fakeRequest = () =>{
+    return new Promise(function(resolve,reject){
+      setTimeout(function(){
+        return resolve({data:'chenhao'})
+      },5000)
+    })
   }
   componentDidMount() {
     // console.log(
@@ -114,6 +124,16 @@ export default class Test extends Component {
         <div id="map" style={{ width: 800, height: 500 }}>
           这是一个test
         </div>
+        <button onClick={() => {
+          console.log(this)
+          // this.fakeRequest().then((data) =>{
+          //   console.log(data)
+          // })
+          props.actions.request({chenhao:1}).then((data) =>{
+            console.log(data)
+          })
+
+        }}>测试redux-thunk</button>
         <div id="container" style={{ width: 800, height: 500 }} />
         <button
           onClick={() => {
