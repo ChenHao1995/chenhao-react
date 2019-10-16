@@ -4,6 +4,7 @@
   "description": "react",
   "main": "server.js",
   "scripts": {
+    "koa-test": "nodemon ./scripts/koa-contact.js",
     "test": "webpack --config ./webpack/webpack.config.base.js",
     "start": "node server.js",
     "nodemon": " cross-env ENV=develop nodemon server.js",
@@ -77,6 +78,7 @@
     "inquirer": "^6.2.2",
     "isomorphic-fetch": "^2.2.1",
     "js": "^0.1.0",
+    "koa": "^2.8.2",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "lint-staged": "^8.1.5",
