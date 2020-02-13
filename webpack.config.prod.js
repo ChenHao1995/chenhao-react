@@ -1,8 +1,8 @@
-var webpack = require("webpack");
-var path = require("path");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+var webpack = require('webpack')
+var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 // module.exports = {
 //   entry: './src/demo.js',
 //   output: {
@@ -31,22 +31,22 @@ module.exports = {
   // },
   entry: {
     // react: "react",
-    flexible: ["./js/index.min.js"],
+    flexible: ['./js/index.min.js'],
     // redux: "redux",
     // reduxSagas: "redux-saga",
     // babelPolyfill: "babel-polyfill",
-    highcharts: "highcharts",
-    index: ["./src/router/index.js"],
-    vendor: ["react", "redux", "redux-saga", "babel-polyfill"]
+    highcharts: 'highcharts',
+    index: ['./src/router/index.js'],
+    vendor: ['react', 'redux', 'redux-saga', 'babel-polyfill']
   },
   output: {
-    path: __dirname + "/dist",
-    filename: "[name].[chunkhash].js",
-    chunkFilename: "[name].[chunkhash:8].min.js"
+    path: __dirname + '/dist',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash:8].min.js'
     //publicPath: "/"
   },
   plugins: [
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __DEVCLIENT__: true,
@@ -56,23 +56,23 @@ module.exports = {
     }),
     new ExtractTextPlugin({
       filename: function(getPath) {
-        return "./css/style.css";
+        return './css/style.css'
       },
       disable: false,
       allChunks: true
     }),
     new HtmlWebpackPlugin({
       //favicon:path.join(__dirname,'../src/favicon.ico'),
-      title: "React",
-      template: path.join(__dirname, "./index.html"),
-      filename: "index.html",
-      inject: "body",
-      htmlContent: "",
-      initialData: "",
+      title: 'React',
+      template: path.join(__dirname, './index.html'),
+      filename: 'index.html',
+      inject: 'body',
+      htmlContent: '',
+      initialData: '',
       production: false,
       // chunks: ["index"],
-      jsname: "name",
-      staticPath: ["style.css"],
+      jsname: 'name',
+      staticPath: ['style.css'],
       hash: false, //为静态资源生成hash值
       minify: {
         //压缩HTML文件
@@ -87,54 +87,60 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       names: [
         // "react",
-        "flexible",
+        'flexible',
         // "redux",
         // "reduxSagas",
         // "babelPolyfill",
-        "highcharts",
-        "vendor"
+        'highcharts',
+        'vendor'
       ],
       minChunks: Infinity
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: "manifest"
+      name: 'manifest'
     })
   ],
   module: {
     rules: [
       {
-        test: /\.js$|\.jsx$/,
+        test: /\.ts$|\.tsx?$/,
+        loader: 'ts-loader',
+        // include: path.join(__dirname, "./src"),
+        exclude: [/ts/, /tscBuild/]
+      },
+      {
+        test: /\.ts$|\.tsx$|\.js$|\.jsx$/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: [
               [
-                "env",
+                'env',
                 {
                   targets: {
                     browsers: [
-                      "last 2 versions",
-                      "Firefox ESR",
-                      "> 1%",
-                      "ie >= 9",
-                      "iOS >= 8",
-                      "Android >= 4"
+                      'last 2 versions',
+                      'Firefox ESR',
+                      '> 1%',
+                      'ie >= 9',
+                      'iOS >= 8',
+                      'Android >= 4'
                     ]
                   },
                   // debug: true,
                   useBuiltIns: true
                 }
               ],
-              "react",
-              "stage-0"
+              'react',
+              'stage-0'
             ],
             plugins: [
-              "transform-decorators-legacy",
+              'transform-decorators-legacy',
               [
-                "import",
+                'import',
                 [
                   {
-                    libraryName: "antd-mobile",
+                    libraryName: 'antd-mobile',
                     style: true
                   }
                 ]
@@ -142,15 +148,15 @@ module.exports = {
             ]
           }
         },
-        include: path.join(__dirname, "./src"),
+        include: path.join(__dirname, './src'),
         exclude: /node_modules/
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
+          fallback: 'style-loader',
           use: {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               sourceMap: true
             }
@@ -160,26 +166,26 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 10000,
-            name: "images/[hash:8].[name].[ext]"
+            name: 'images/[hash:8].[name].[ext]'
           }
         }
       },
       {
         test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 10000,
-            name: "fonts/[hash:8].[name].[ext]"
+            name: 'fonts/[hash:8].[name].[ext]'
           }
         }
       },
       {
         test: /\.less$/,
-        loader: "style-loader!css-loader!less-loader"
+        loader: 'style-loader!css-loader!less-loader'
       }
     ]
   },
@@ -205,6 +211,6 @@ module.exports = {
   //   // },
   // },
   resolve: {
-    extensions: [".web.js", ".js", ".jsx", ".less", ".css"]
+    extensions: ['.web.js', '.js', '.jsx', '.less', '.css']
   }
-};
+}
