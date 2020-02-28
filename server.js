@@ -50,7 +50,19 @@ app.set('views', __dirname + '/dist')
 
 //app.use('/',express.static('./'))
 //提供静态服务
-app.use('/app', express.static('./dist'))
+app.use(
+  '/app',
+  express.static('./dist', {
+    setHeaders: function(res, path, stat) {
+      res.set(
+        'Cache-Control',
+        path.includes('.js') || path.includes('.css')
+          ? 'max-age=31104000000'
+          : 'no-store'
+      )
+    }
+  })
+)
 //app.use('/', proxy({target: 'http://127.0.0.1:8868/', changeOrigin: true}));
 
 // 为img提供静态服务
