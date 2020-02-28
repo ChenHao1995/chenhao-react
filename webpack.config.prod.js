@@ -142,6 +142,10 @@ module.exports = {
                   {
                     libraryName: 'antd-mobile',
                     style: true
+                  },
+                  {
+                    libraryName: 'antd',
+                    style: true
                   }
                 ]
               ]
@@ -185,7 +189,19 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        loader: 'style-loader!css-loader!less-loader'
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'less-loader',
+            options: { javascriptEnabled: true }
+          }
+        ]
+        // loader: 'style-loader!css-loader!less-loader',
       }
     ]
   },
@@ -211,6 +227,10 @@ module.exports = {
   //   // },
   // },
   resolve: {
-    extensions: ['.web.js', '.js', '.jsx', '.less', '.css']
+    extensions: ['.web.js', '.js', '.jsx', '.less', '.css', '.ts', '.tsx'],
+    alias: {
+      '@src': path.resolve(__dirname, 'src'),
+      '@store': path.resolve(__dirname, 'src/store')
+    }
   }
 }
