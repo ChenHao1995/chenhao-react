@@ -66,7 +66,7 @@ module.exports = {
     }),
     new ExtractTextPlugin({
       filename: function(getPath) {
-        return 'css/style.css';
+        return 'css/style.css'
       },
       disable: false,
       allChunks: true
@@ -273,6 +273,10 @@ module.exports = {
   //   configFile: path.join(__dirname, './.eslintrc.json')
   // },
   resolve: {
-    extensions: ['.web.js', '.js', '.jsx', '.less', '.css', '.ts', '.tsx']
+    extensions: ['.web.js', '.js', '.jsx', '.less', '.css', '.ts', '.tsx'],
+    alias: {
+      '@src': path.resolve(__dirname, 'src'),
+      '@store': path.resolve(__dirname, 'src/store')
+    }
   }
 }

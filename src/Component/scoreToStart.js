@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 //import AppRouter from './router.js'
 //import store from '../store.js'
-import Actions from '../actions'
+import Actions from '@store/actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -19,10 +19,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(Actions, dispatch)
   }
 }
-@connect(
-  mapStateToProps,
-  mapDispatchToProps
-)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class ScoreToStart extends Component {
   constructor(props) {
     super(props)

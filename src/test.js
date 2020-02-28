@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 //import AppRouter from './router.js'
 //import store from './store.js'
-import Actions from './actions'
+import Actions from '@store/actions'
 import { connect } from 'react-redux'
 //import democss from '../css/demo.css'
 import flexible from '../js/index.min.js'
@@ -41,10 +41,7 @@ function mapDispatchToProps(dispatch) {
     routerActions: bindActionCreators(routerActions, dispatch)
   }
 }
-@connect(
-  mapStateToProps,
-  mapDispatchToProps
-)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class Test extends Component {
   constructor(props) {
     super(props)
@@ -52,11 +49,11 @@ export default class Test extends Component {
     //this.props.routerActions.push('/chen')
   }
 
-  fakeRequest = () =>{
-    return new Promise(function(resolve,reject){
-      setTimeout(function(){
-        return resolve({data:'chenhao'})
-      },5000)
+  fakeRequest = () => {
+    return new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        return resolve({ data: 'chenhao' })
+      }, 5000)
     })
   }
   componentDidMount() {
@@ -124,16 +121,19 @@ export default class Test extends Component {
         <div id="map" style={{ width: 800, height: 500 }}>
           这是一个test
         </div>
-        <button onClick={() => {
-          console.log(this)
-          // this.fakeRequest().then((data) =>{
-          //   console.log(data)
-          // })
-          props.actions.request({chenhao:1}).then((data) =>{
-            console.log(data)
-          })
-
-        }}>测试redux-thunk</button>
+        <button
+          onClick={() => {
+            console.log(this)
+            // this.fakeRequest().then((data) =>{
+            //   console.log(data)
+            // })
+            props.actions.request({ chenhao: 1 }).then(data => {
+              console.log(data)
+            })
+          }}
+        >
+          测试redux-thunk
+        </button>
         <div id="container" style={{ width: 800, height: 500 }} />
         <button
           onClick={() => {

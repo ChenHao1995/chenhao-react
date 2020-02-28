@@ -4,14 +4,14 @@ import React, { Component } from 'react'
 //import { createStore } from 'redux'
 import { PropTypes } from 'prop-types'
 //import AppRouter from './router.js'
-import store from './store'
-import Actions from './actions'
+import store from '@store'
+import Actions from '@store/actions'
 import { connect } from 'react-redux'
-import democss from '../css/demo.css'
-import flexible from '../js/index.min.js'
+import democss from './index.css'
+import flexible from '@src/../js/index.min.js'
 //import  antdstyle  from '../node_modules/antd-mobile/dist/antd-mobile.css';
 import { Switch } from 'antd-mobile'
-import Total from './Component/totalPoints.js'
+import Total from '@src/Component/totalPoints.js'
 //import ScoreStart from './Component/scoreToStart.js'
 import { bindActionCreators } from 'redux'
 import { routerActions, push } from 'react-router-redux'
@@ -33,10 +33,7 @@ function mapDispatchToProps(dispatch) {
     routerActions: bindActionCreators(routerActions, dispatch)
   }
 }
-@connect(
-  mapStateToProps,
-  mapDispatchToProps
-)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class Demo extends Component {
   constructor(props) {
     super(props)
@@ -69,7 +66,7 @@ export default class Demo extends Component {
   ScoreStartAsync = () => {
     return new Promise(function(resolve, reject) {
       require.ensure([], function(require) {
-        let result = require('./Component/scoreToStart.js')
+        let result = require('@src/Component/scoreToStart.js')
         console.log(result.default, 'ScoreStartAsync组件')
         resolve(result.default)
       })

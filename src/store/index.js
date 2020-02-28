@@ -2,14 +2,15 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 //import  reducer  from './reducer.js'
-import Reducer from '../reducer'
+import Reducer from './reducer'
 import {
   syncHistoryWithStore,
   routerReducer,
   routerMiddleware
 } from 'react-router-redux'
 //import { history } from './router'
-import createHistory from 'history/createBrowserHistory'
+// import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 import createSagaMiddleware from 'redux-saga'
 import sagas from '../sagas'
 let initState = {
@@ -20,11 +21,9 @@ let initState = {
     checked: false
   }
 }
-const history = createHistory()
+const history = createBrowserHistory()
 const middleware = routerMiddleware(history)
 const sagaMiddleware = createSagaMiddleware()
-
-export { history }
 
 const rootReducer = combineReducers({
   ...Reducer,
@@ -33,7 +32,8 @@ const rootReducer = combineReducers({
 const store = createStore(
   rootReducer,
   initState,
-  applyMiddleware(sagaMiddleware, middleware,thunk)
+  applyMiddleware(sagaMiddleware, middleware, thunk)
 )
 sagaMiddleware.run(sagas)
 export default store
+export { history }

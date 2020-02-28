@@ -18,7 +18,6 @@ import {
   routerMiddleware,
   ConnectedRouter
 } from 'react-router-redux'
-import createHistory from 'history/createBrowserHistory'
 //import createMemoryHistory from 'history/createMemoryHistory'
 //import { browserHistory } from 'react-router'
 //路由
@@ -74,7 +73,7 @@ const App = props => {
           <Route
             exact
             path="/app/index"
-            component={ansycComponent(() => import('../demo.js'))}
+            component={ansycComponent(() => import('../view/StarScore'))}
           />
           <WrapRoute
             exact

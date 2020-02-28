@@ -1,5 +1,5 @@
 import immutable, { fromJS } from 'immutable'
-import { deepMerge } from '../util'
+import { deepMerge } from '@src/util'
 
 export default function demoReducer(state = {}, action) {
   console.log('reducer', state, action)
