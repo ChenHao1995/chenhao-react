@@ -83,12 +83,12 @@ const App = props => {
           <WrapRoute
             exact
             path="/app/drop"
-            component={ansycComponent(() => import('../dropTable.tsx'))}
+            component={ansycComponent(() => import('../view/DropTable'))}
           />
           <WrapRoute
             exact
             path="/app/signature"
-            component={ansycComponent(() => import('../signature'))}
+            component={ansycComponent(() => import('../view/signature'))}
           />
           <WrapRoute
             exact

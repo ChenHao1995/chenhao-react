@@ -16,6 +16,7 @@ import Total from '@src/Component/totalPoints.js'
 import { bindActionCreators } from 'redux'
 import { routerActions, push } from 'react-router-redux'
 import createClass from 'create-react-class'
+import { Input } from 'antd'
 //import Api from '../api'
 
 function mapStateToProps(state) {
@@ -208,6 +209,7 @@ export default class Demo extends Component {
         >
           提交
         </button>
+        <Input />
 
         <button onClick={this.onhref}>跳转</button>
         {this.props.children}

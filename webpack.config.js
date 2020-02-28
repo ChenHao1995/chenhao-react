@@ -229,12 +229,25 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        loader: 'style-loader!css-loader!less-loader'
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'less-loader',
+            options: { javascriptEnabled: true }
+          }
+        ]
+        // loader: 'style-loader!css-loader!less-loader',
       }
     ]
   },
   devtool: 'source-map',
   devServer: {
+    port: 8868,
     //在公共路径下引入资源的路径
     //contentBase: '/',
     hot: true,

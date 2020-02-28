@@ -8,7 +8,7 @@
     "test": "webpack --config ./webpack/webpack.config.base.js",
     "start": "node server.js",
     "nodemon": " cross-env ENV=develop nodemon server.js",
-    "dev": " cross-env ENV=develop webpack-dev-server --hot --inline --progress --colors --port 8868 --config ./webpack.config.js",
+    "dev": " cross-env ENV=develop webpack-dev-server --hot --inline --progress --colors --config ./webpack.config.js",
     "prod": "webpack --config ./webpack.config.prod.js && npm run dev:nodemon",
     "dev:ssr": "babel-node server.js",
     "dev:nodemon": "nodemon server.js --exec babel-node",

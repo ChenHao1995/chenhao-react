@@ -1,22 +1,5 @@
 import React, { Component } from 'react'
-//import {render} from 'react-dom'
-//import { Router,hashHistory,Route,BrowserRouter,Switch } from 'react-router-dom'
-//import { createStore } from 'redux'
 import { PropTypes } from 'prop-types'
-//import AppRouter from './router.js'
-import store from './store'
-import Actions from '@store/actions'
-import { connect } from 'react-redux'
-import democss from '../css/demo.css'
-import flexible from '../js/index.min.js'
-//import  antdstyle  from '../node_modules/antd-mobile/dist/antd-mobile.css';
-import { Switch } from 'antd-mobile'
-import Total from './Component/totalPoints.js'
-//import ScoreStart from './Component/scoreToStart.js'
-import { bindActionCreators } from 'redux'
-import { routerActions, push } from 'react-router-redux'
-import createClass from 'create-react-class'
-//import Api from '../api'
 import {
   DragDropContext,
   DragSource,
@@ -27,8 +10,6 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import update from 'immutability-helper'
 import { Table } from 'antd'
 import './dropTable.less'
-import { findDOMNode } from 'react-dom'
-import renderEmpty from 'antd/lib/config-provider/renderEmpty'
 interface PropsType {
   children: JSX.Element
   // name: string
