@@ -100,6 +100,11 @@ const App = props => {
             path="/app/indexdb"
             component={ansycComponent(() => import('../view/IndexDB'))}
           />
+          <WrapRoute
+            exact
+            path="/app/TujiaUpload"
+            component={ansycComponent(() => import('../view/TujiaUpload'))}
+          />
         </div>
       </ConnectedRouter>
     </Provider>
