@@ -28,6 +28,7 @@ import {
 // import babelPolyfill from 'babel-polyfill'
 import { PropTypes } from 'prop-types'
 import ansycComponent from '../ansycComponent'
+import routerConfig from './config'
 
 const isLogin = true
 function WrapRoute(props) {
@@ -70,41 +71,21 @@ const App = props => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Route
+          {/* <Route
             exact
             path="/app/index"
             component={ansycComponent(() => import('../view/StarScore'))}
-          />
-          <WrapRoute
-            exact
-            path="/app/test"
-            component={ansycComponent(() => import('../test.js'))}
-          />
-          <WrapRoute
-            exact
-            path="/app/drop"
-            component={ansycComponent(() => import('../view/DropTable'))}
-          />
-          <WrapRoute
-            exact
-            path="/app/signature"
-            component={ansycComponent(() => import('../view/signature'))}
-          />
-          <WrapRoute
-            exact
-            path="/app/exceldispose"
-            component={ansycComponent(() => import('../view/ExcelDispose'))}
-          />
-          <WrapRoute
-            exact
-            path="/app/indexdb"
-            component={ansycComponent(() => import('../view/IndexDB'))}
-          />
-          <WrapRoute
-            exact
-            path="/app/TujiaUpload"
-            component={ansycComponent(() => import('../view/TujiaUpload'))}
-          />
+          /> */}
+          {routerConfig.map((value, key) => {
+            return (
+              <WrapRoute
+                key={key}
+                exact
+                path={value.path}
+                component={ansycComponent(value.componentPath)}
+              />
+            )
+          })}
         </div>
       </ConnectedRouter>
     </Provider>

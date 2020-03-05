@@ -4,6 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OpenBrowserPlugin = require('open-browser-webpack-plugin')
 let rewrite = require('express-urlrewrite')
+var baseConfig = require('./webpack.config.base')
 
 // module.exports = {
 //   entry: './src/demo.js',
@@ -28,27 +29,28 @@ let rewrite = require('express-urlrewrite')
 // };
 // console.log(process.env.ENV);
 module.exports = {
-  entry: {
-    // react: "react",
-    // flexible: ['./js/index.min.js'],
-    // redux: "redux",
-    // reduxSagas: "redux-saga",
-    // babelPolyfill: "babel-polyfill",
-    // highcharts: 'highcharts',
-    index: ['./src/router/index.js'],
-    vendor: [
-      'react',
-      'redux',
-      'redux-saga',
-      'babel-polyfill',
-      'immutable',
-      'react-router-redux',
-      'react-dom',
-      'react-router-dom',
-      'react-redux',
-      'history'
-    ]
-  },
+  // entry: {
+  //   // react: "react",
+  //   // flexible: ['./js/index.min.js'],
+  //   // redux: "redux",
+  //   // reduxSagas: "redux-saga",
+  //   // babelPolyfill: "babel-polyfill",
+  //   // highcharts: 'highcharts',
+  //   index: ['./src/router/index.js'],
+  //   vendor: [
+  //     'react',
+  //     'redux',
+  //     'redux-saga',
+  //     'babel-polyfill',
+  //     'immutable',
+  //     'react-router-redux',
+  //     'react-dom',
+  //     'react-router-dom',
+  //     'react-redux',
+  //     'history'
+  //   ]
+  // },
+  entry: './src/router/index.js',
   output: {
     // path: path.resolve(__dirname, 'dist'),
     path: __dirname + '/dist',
@@ -76,10 +78,6 @@ module.exports = {
       title: 'React',
       template: path.join(__dirname, './index.html'),
       filename: 'index.html',
-      inject: 'body',
-      htmlContent: '',
-      initialData: '',
-      production: false,
       // chunks: [
       //   // "react",
       //   "flexible",
@@ -93,7 +91,6 @@ module.exports = {
       //   "vendor",
       //   "index"
       // ],
-      jsname: 'name',
       //staticPath: ['style.css'],
       // hash: false, //为静态资源生成hash值
       minify: {
@@ -109,21 +106,6 @@ module.exports = {
         configFile: path.join(__dirname, './.eslintrc.json')
       }
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: [
-        // "react",
-        // 'flexible',
-        // "redux",
-        // "reduxSagas",
-        // "babelPolyfill",
-        // 'highcharts',
-        'vendor'
-      ],
-      minChunks: Infinity
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest'
-    }),
     // node 调用devserver 这个必须有
     new webpack.HotModuleReplacementPlugin(),
     // new webpack.optimize.CommonsChunkPlugin({
@@ -132,129 +114,7 @@ module.exports = {
     new OpenBrowserPlugin({ url: 'http://localhost:8868/app/index' })
   ],
   module: {
-    rules: [
-      {
-        test: /\.ts$|\.tsx?$/,
-        loader: 'ts-loader',
-        // include: path.join(__dirname, "./src"),
-        exclude: [/ts/, /tscBuild/]
-      },
-      {
-        enforce: 'pre',
-        test: /\.js$|\.jsx$/,
-        loader: 'eslint-loader',
-        options: {
-          fix: true
-        },
-        exclude: [/node_modules/, /assets/]
-      },
-      {
-        test: /\.ts$|\.tsx$|\.js$|\.jsx$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                'env',
-                {
-                  targets: {
-                    browsers: [
-                      'last 2 versions',
-                      'Firefox ESR',
-                      '> 1%',
-                      'ie >= 9',
-                      'iOS >= 8',
-                      'Android >= 4'
-                    ]
-                  },
-                  // debug: true,
-                  useBuiltIns: true
-                }
-              ],
-              'react',
-              'stage-0'
-            ],
-            plugins: [
-              'transform-decorators-legacy',
-              [
-                'import',
-                [
-                  {
-                    libraryName: 'antd-mobile',
-                    style: true
-                  },
-                  {
-                    libraryName: 'antd',
-                    style: true
-                  }
-                ]
-              ]
-            ]
-          }
-        },
-        include: path.join(__dirname, './src'),
-        exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          }
-        ]
-      },
-      // {
-      //   test: /\.css$/,
-      //   use: ExtractTextPlugin.extract({
-      //     fallback: 'style-loader',
-      //     use: {
-      //       loader: 'css-loader',
-      //       options: {
-      //         sourceMap: true
-      //       }
-      //     }
-      //   })
-      // },
-      {
-        test: /\.(jpe?g|png|gif)$/i,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: 'images/[hash:8].[name].[ext]'
-          }
-        }
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: 'fonts/[hash:8].[name].[ext]'
-          }
-        }
-      },
-      {
-        test: /\.less$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'less-loader',
-            options: { javascriptEnabled: true }
-          }
-        ]
-        // loader: 'style-loader!css-loader!less-loader',
-      }
-    ]
+    rules: [...baseConfig.rules]
   },
   devtool: 'source-map',
   devServer: {

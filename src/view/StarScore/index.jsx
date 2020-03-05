@@ -129,9 +129,11 @@ export default class Demo extends Component {
   }
 
   onhref = () => {
-    const { routerActions } = this.props
+    const { routerActions, history } = this.props
+    console.log(history)
     //console.log(routerActions.go)
-    routerActions.push('/app/test')
+    history.push('/app/TujiaUpload')
+    // routerActions.push('/app/test')
     console.log(push)
     //store.dispatch(push('/test'))
   }
@@ -211,7 +213,7 @@ export default class Demo extends Component {
         </button>
         <Input />
 
-        <button onClick={this.onhref}>跳转</button>
+        <button onClick={this.onhref}>跳转到上传</button>
         {this.props.children}
       </div>
     )

@@ -3,6 +3,7 @@ var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+var baseConfig = require('./webpack.config.base')
 // module.exports = {
 //   entry: './src/demo.js',
 //   output: {
@@ -26,32 +27,31 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 // };
 
 module.exports = {
-  // entry: {
-  //   index: ["./src/router/index.js"]
-  // },
   entry: {
-    // react: "react",
-    // flexible: ['./js/index.min.js'],
-    // redux: "redux",
-    // reduxSagas: "redux-saga",
-    // babelPolyfill: "babel-polyfill",
-    // highcharts: 'highcharts',
     index: ['./src/router/index.js'],
-    vendor: ['react', 'redux', 'redux-saga', 'babel-polyfill']
+    vendor: [
+      'react',
+      'redux',
+      'redux-saga',
+      'babel-polyfill',
+      'immutable',
+      'react-router-redux',
+      'react-dom',
+      'react-router-dom',
+      'react-redux',
+      'history'
+    ]
   },
   output: {
     path: __dirname + '/dist',
     filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash:8].min.js'
-    //publicPath: "/"
+    chunkFilename: '[name].[chunkhash:8].min.js',
+    publicPath: '/jsStatic/'
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
-      __CLIENT__: true,
-      __DEVCLIENT__: true,
-      __DEVSERVER__: true,
-      __DEVLOGGER__: true
+      __isProd: true
       //'process.env.NODE_ENV': JSON.stringify(nodeEnv)
     }),
     // new ExtractTextPlugin({
@@ -66,13 +66,8 @@ module.exports = {
       title: 'React',
       template: path.join(__dirname, './index.html'),
       filename: 'index.html',
-      inject: 'body',
-      htmlContent: '',
-      initialData: '',
-      production: false,
       // chunks: ["index"],
-      jsname: 'name',
-      staticPath: ['style.css'],
+      // staticPath: ['style.css'],
       hash: false, //为静态资源生成hash值
       minify: {
         //压缩HTML文件
@@ -86,158 +81,27 @@ module.exports = {
 
     new webpack.optimize.CommonsChunkPlugin({
       names: [
+        'index',
+        'vendor'
         // "react",
-        'flexible',
+        // 'flexible',
         // "redux",
         // "reduxSagas",
         // "babelPolyfill",
-        'highcharts',
-        'vendor'
+        // 'highcharts',
       ],
       minChunks: Infinity
     }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'manifest'
+    // }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest'
+      name: 'runtime'
     })
   ],
   module: {
-    rules: [
-      {
-        test: /\.ts$|\.tsx?$/,
-        loader: 'ts-loader',
-        // include: path.join(__dirname, "./src"),
-        exclude: [/ts/, /tscBuild/]
-      },
-      {
-        test: /\.ts$|\.tsx$|\.js$|\.jsx$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                'env',
-                {
-                  targets: {
-                    browsers: [
-                      'last 2 versions',
-                      'Firefox ESR',
-                      '> 1%',
-                      'ie >= 9',
-                      'iOS >= 8',
-                      'Android >= 4'
-                    ]
-                  },
-                  // debug: true,
-                  useBuiltIns: true
-                }
-              ],
-              'react',
-              'stage-0'
-            ],
-            plugins: [
-              'transform-decorators-legacy',
-              [
-                'import',
-                [
-                  {
-                    libraryName: 'antd-mobile',
-                    style: true
-                  },
-                  {
-                    libraryName: 'antd',
-                    style: true
-                  }
-                ]
-              ]
-            ]
-          }
-        },
-        include: path.join(__dirname, './src'),
-        exclude: /node_modules/
-      },
-      // {
-      //   test: /\.css$/,
-      //   use: ExtractTextPlugin.extract({
-      //     fallback: 'style-loader',
-      //     use: {
-      //       loader: 'css-loader',
-      //       options: {
-      //         sourceMap: true
-      //       }
-      //     }
-      //   })
-      // },
-      {
-        test: /\.(jpe?g|png|gif)$/i,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: 'images/[hash:8].[name].[ext]'
-          }
-        }
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: 'fonts/[hash:8].[name].[ext]'
-          }
-        }
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          }
-        ]
-        // loader: 'style-loader!css-loader!less-loader',
-      },
-      {
-        test: /\.less$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'less-loader',
-            options: { javascriptEnabled: true }
-          }
-        ]
-        // loader: 'style-loader!css-loader!less-loader',
-      }
-    ]
+    rules: [...baseConfig.rules]
   },
-  // devServer: {
-  //   contentBase: './dist',
-  //   hot: true,
-  //   host: '127.0.0.1',
-  //   historyApiFallback: true
-  //   // historyApiFallback: {
-  //   //   rewrites: [
-  //   //     { from: /^\/hr/, to: '/hr.html' },
-  //   //     { from: /^\/user/, to: '/user.html' },
-  //   //     { from: /^\//, to: '/home.html' },
-  //   //   ]
-  //   // },
-  //   // proxy: {
-  //   //   '/index.html': {
-  //   //     target: 'http://127.0.0.1:6868',
-  //   //   },
-  //   //   '/afbApi': {
-  //   //     target: 'http://127.0.0.1:3000',
-  //   //   },
-  //   // },
-  // },
   resolve: {
     extensions: ['.web.js', '.js', '.jsx', '.less', '.css', '.ts', '.tsx'],
     alias: {

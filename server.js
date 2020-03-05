@@ -51,7 +51,7 @@ app.set('views', __dirname + '/dist')
 //app.use('/',express.static('./'))
 //提供静态服务
 app.use(
-  '/app',
+  '/jsStatic',
   express.static('./dist', {
     setHeaders: function(res, path, stat) {
       res.set(
