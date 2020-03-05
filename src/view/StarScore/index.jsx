@@ -140,7 +140,7 @@ export default class Demo extends Component {
 
   render() {
     const ScoreStart = this.state.ScoreStart
-    console.log(this.props)
+    // console.log(this.props)
     const { checked } = this.props
     const dataArray = [
       {
