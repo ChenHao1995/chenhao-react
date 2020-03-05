@@ -134,7 +134,7 @@ export default class Demo extends Component {
     //console.log(routerActions.go)
     history.push('/app/TujiaUpload')
     // routerActions.push('/app/test')
-    console.log(push)
+    // console.log(push)
     //store.dispatch(push('/test'))
   }
 

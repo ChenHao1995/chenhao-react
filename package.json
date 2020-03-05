@@ -17,7 +17,7 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.js": "eslint"
+    "src/view/**/*.{js,jsx}": "eslint"
   },
   "repository": {
     "type": "git",
