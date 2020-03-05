@@ -39,8 +39,14 @@ module.exports = {
       'react-dom',
       'react-router-dom',
       'react-redux',
-      'history'
-    ]
+      'history',
+      'prop-types'
+    ],
+    antd: 'antd',
+    antdMobile: 'antd-mobile',
+    antDesignIcons: '@ant-design/icons',
+    axios: 'axios',
+    action: '@store/actions'
   },
   output: {
     path: __dirname + '/dist',
@@ -75,6 +81,15 @@ module.exports = {
         collapseWhitespace: false //删除空白符与换行符
       }
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        //压缩代码
+        dead_code: true, //移除没被引用的代码
+        warnings: false //当删除没有用处的代码时，显示警告
+        // loops: true //当do、while 、 for循环的判断条件可以确定是，对其进行优化
+      }
+      // except: ['$super', '$', 'exports', 'require'] //混淆,并排除关键字
+    }),
 
     // 保证vendor的hash不会每次打包都变化
     new webpack.HashedModuleIdsPlugin(),
@@ -82,7 +97,12 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       names: [
         'index',
-        'vendor'
+        'vendor',
+        'antdMobile',
+        'antd',
+        'antDesignIcons',
+        'axios',
+        'action'
         // "react",
         // 'flexible',
         // "redux",
