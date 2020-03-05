@@ -31,11 +31,11 @@ module.exports = {
   // },
   entry: {
     // react: "react",
-    flexible: ['./js/index.min.js'],
+    // flexible: ['./js/index.min.js'],
     // redux: "redux",
     // reduxSagas: "redux-saga",
     // babelPolyfill: "babel-polyfill",
-    highcharts: 'highcharts',
+    // highcharts: 'highcharts',
     index: ['./src/router/index.js'],
     vendor: ['react', 'redux', 'redux-saga', 'babel-polyfill']
   },
@@ -54,13 +54,13 @@ module.exports = {
       __DEVLOGGER__: true
       //'process.env.NODE_ENV': JSON.stringify(nodeEnv)
     }),
-    new ExtractTextPlugin({
-      filename: function(getPath) {
-        return './css/style.css'
-      },
-      disable: false,
-      allChunks: true
-    }),
+    // new ExtractTextPlugin({
+    //   filename: function(getPath) {
+    //     return './css/style.css'
+    //   },
+    //   disable: false,
+    //   allChunks: true
+    // }),
     new HtmlWebpackPlugin({
       //favicon:path.join(__dirname,'../src/favicon.ico'),
       title: 'React',
@@ -155,18 +155,18 @@ module.exports = {
         include: path.join(__dirname, './src'),
         exclude: /node_modules/
       },
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
-          }
-        })
-      },
+      // {
+      //   test: /\.css$/,
+      //   use: ExtractTextPlugin.extract({
+      //     fallback: 'style-loader',
+      //     use: {
+      //       loader: 'css-loader',
+      //       options: {
+      //         sourceMap: true
+      //       }
+      //     }
+      //   })
+      // },
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: {
@@ -186,6 +186,18 @@ module.exports = {
             name: 'fonts/[hash:8].[name].[ext]'
           }
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          }
+        ]
+        // loader: 'style-loader!css-loader!less-loader',
       },
       {
         test: /\.less$/,

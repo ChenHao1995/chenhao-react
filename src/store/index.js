@@ -19,6 +19,9 @@ let initState = {
     scoreToStartForm: {},
     remarkValue: '',
     checked: false
+  },
+  tujiaReducer: {
+    urlList: []
   }
 }
 const history = createBrowserHistory()
