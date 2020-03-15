@@ -1,19 +1,17 @@
-import React,{ Component } from 'react'
-import {PropTypes} from 'prop-types'
+import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
 
-
-const ansycComponent = getcomponent => (
+const ansycComponent = getcomponent =>
   class AnsycComponent extends Component {
-    constructor(props){
+    constructor(props) {
       super(props)
       this.state = {
         component: null
       }
-      
     }
 
-    componentDidMount(){
-      getcomponent().then((component) => {
+    componentDidMount() {
+      getcomponent().then(component => {
         console.log(component.default)
         this.setState({
           component: component.default
@@ -21,12 +19,10 @@ const ansycComponent = getcomponent => (
       })
     }
 
-    render(){
+    render() {
       const ANSYC = this.state.component
-      return this.state.component ? <ANSYC {...this.props}/> : null
+      return this.state.component ? <ANSYC {...this.props} /> : null
     }
-
   }
-)
 
 export default ansycComponent
