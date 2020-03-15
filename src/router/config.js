@@ -22,6 +22,10 @@ const config = [
   {
     path: '/app/TujiaUpload',
     componentPath: () => import('../view/TujiaUpload')
+  },
+  {
+    path: '/app/LargeForm',
+    componentPath: () => import('../view/LargeForm')
   }
 ]
 export default config
