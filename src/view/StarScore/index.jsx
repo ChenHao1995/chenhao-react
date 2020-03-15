@@ -72,7 +72,7 @@ export default class Demo extends Component {
         resolve(result.default)
       })
     })
-  }
+  };
 
   remarkChange(value) {
     this.props.actions.remark({
@@ -136,7 +136,7 @@ export default class Demo extends Component {
     // routerActions.push('/app/test')
     // console.log(push)
     //store.dispatch(push('/test'))
-  }
+  };
 
   render() {
     const ScoreStart = this.state.ScoreStart

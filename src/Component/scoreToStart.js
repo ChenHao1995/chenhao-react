@@ -14,6 +14,7 @@ function mapStateToProps(state) {
     scoreToStartForm: state.demoreducer.scoreToStartForm
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(Actions, dispatch)
