@@ -87,7 +87,7 @@
     "lodash": "^4.17.15",
     "node-xlsx": "^0.15.0",
     "nodemon": "^1.14.11",
-    "open": "0.0.5",
+    "open": "6.0.0",
     "open-browser-webpack-plugin": "0.0.5",
     "pdf-text-extract": "^1.5.0",
     "pdf-textstring": "0.0.7",
