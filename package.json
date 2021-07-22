@@ -112,6 +112,6 @@
     "url-loader": "^1.0.1",
     "webpack-node-externals": "^1.7.2",
     "write-file-webpack-plugin": "^4.5.0",
-    "xlsx": "^0.14.3"
+    "xlsx": "^0.17.0"
   }
 }
